@@ -70,40 +70,40 @@ class P3DStemModelWings : public P3DStemModel
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
 
   virtual void     FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const;
+                                       unsigned_int32        Attr) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual void     FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const;
 
   virtual
-  unsigned int     GetIndexCount      (unsigned int        PrimitiveType) const;
+  unsigned_int32     GetIndexCount      (unsigned_int32        PrimitiveType) const;
 
   virtual void     FillIndexBuffer    (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   virtual void     Save               (P3DOutputStringStream
                                                           *TargetStream) const;
@@ -119,8 +119,8 @@ class P3DStemModelWings : public P3DStemModel
   void             SetWidth           (float               Width);
   float            GetWidth           () const;
 
-  void             SetSectionCount    (unsigned int        SectionCount);
-  unsigned int     GetSectionCount    () const;
+  void             SetSectionCount    (unsigned_int32        SectionCount);
+  unsigned_int32     GetSectionCount    () const;
 
   void             SetCurvature       (const P3DMathNaturalCubicSpline
                                                           *Curve);
@@ -137,7 +137,7 @@ class P3DStemModelWings : public P3DStemModel
 
   private          :
 
-  unsigned int     GetParentAxisResolution
+  unsigned_int32     GetParentAxisResolution
                                       () const
    {
     return(ParentStemModel->GetAxisResolution());
@@ -148,7 +148,7 @@ class P3DStemModelWings : public P3DStemModel
   float                                WingsAngle; /* Currently unused */
   float                                Width;
 
-  unsigned int                         SectionCount;
+  unsigned_int32                         SectionCount;
   P3DMathNaturalCubicSpline            Curvature;
   float                                Thickness;
  };

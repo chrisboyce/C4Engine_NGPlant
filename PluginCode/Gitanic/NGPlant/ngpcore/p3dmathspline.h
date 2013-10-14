@@ -45,9 +45,9 @@ class P3DMathNaturalCubicSpline
   void             operator =                   (const P3DMathNaturalCubicSpline
                                                                     &src);
 
-  unsigned int     GetCPCount                   () const;
-  float            GetCPX                       (unsigned int        cp) const;
-  float            GetCPY                       (unsigned int        cp) const;
+  unsigned_int32     GetCPCount                   () const;
+  float            GetCPX                       (unsigned_int32        cp) const;
+  float            GetCPY                       (unsigned_int32        cp) const;
 
   float            GetValue                     (float               x) const;
   float            GetTangent                   (float               x) const;
@@ -59,9 +59,9 @@ class P3DMathNaturalCubicSpline
 
   void             UpdateCP                     (float               x,
                                                  float               y,
-                                                 unsigned int        cp);
+                                                 unsigned_int32        cp);
 
-  void             DelCP                        (unsigned int        cp);
+  void             DelCP                        (unsigned_int32        cp);
 
   void             SetConstant                  (float               value);
   void             SetLinear                    (float               ax,
@@ -77,7 +77,7 @@ class P3DMathNaturalCubicSpline
   void             RecalcY2                     ();
 
 
-  unsigned int     cp_count;
+  unsigned_int32     cp_count;
   float            cp_x[P3DMATH_NATURAL_CUBIC_SPLINE_CP_MAX_COUNT];
   float            cp_y[P3DMATH_NATURAL_CUBIC_SPLINE_CP_MAX_COUNT];
   float            cp_y2[P3DMATH_NATURAL_CUBIC_SPLINE_CP_MAX_COUNT];

@@ -28,19 +28,17 @@
  SUCH DAMAGE.
 
 ***************************************************************************/
-
-#include <string.h>
-#include <stdafx.h>
+#include <C4Defines.h>
 #include <ngpcore/p3dgmeshdata.h>
 
                    P3DGMeshData::P3DGMeshData
-                                      (const unsigned int *VAttrCount,
-                                       unsigned int        PrimitiveCount,
-                                       unsigned int        IndexCount,
-                                       unsigned int        VAttrCountI,
-                                       unsigned int        IndexCountI)
+                                      (const unsigned_int32 *VAttrCount,
+                                       unsigned_int32        PrimitiveCount,
+                                       unsigned_int32        IndexCount,
+                                       unsigned_int32        VAttrCountI,
+                                       unsigned_int32        IndexCountI)
  {
-  unsigned int     Index;
+  unsigned_int32     Index;
 
   for (Index = 0; Index < P3D_GMESH_MAX_ATTRS; Index++)
    {
@@ -68,12 +66,12 @@
        }
 
       VAttrValueCounts[Index]      = VAttrCount[Index];
-      VAttrValueIndices[Index]     = new unsigned int[IndexCount];
+      VAttrValueIndices[Index]     = new unsigned_int32[IndexCount];
      }
 
     VAttrValueIndexCount = IndexCount;
 
-    PrimitiveTypes = new unsigned int[PrimitiveCount];
+    PrimitiveTypes = new unsigned_int32[PrimitiveCount];
 
     this->PrimitiveCount = PrimitiveCount;
 
@@ -91,7 +89,7 @@
 
     this->VAttrCountI = VAttrCountI;
 
-    IndexBufferI = new unsigned int[IndexCountI];
+    IndexBufferI = new unsigned_int32[IndexCountI];
 
     this->IndexCountI = IndexCountI;
    }
@@ -114,7 +112,7 @@
                    P3DGMeshData::~P3DGMeshData
                                       ()
  {
-  unsigned int     Index;
+  unsigned_int32     Index;
 
   for (Index = 0; Index < P3D_GMESH_MAX_ATTRS; Index++)
    {
@@ -127,8 +125,8 @@
   delete IndexBufferI;
  }
 
-unsigned int       P3DGMeshData::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DGMeshData::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -141,7 +139,7 @@ unsigned int       P3DGMeshData::GetVAttrCount
  }
 
 float             *P3DGMeshData::GetVAttrBuffer
-                                      (unsigned int        Attr)
+                                      (unsigned_int32        Attr)
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -154,7 +152,7 @@ float             *P3DGMeshData::GetVAttrBuffer
  }
 
 const float       *P3DGMeshData::GetVAttrBuffer
-                                      (unsigned int        Attr) const
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -166,34 +164,34 @@ const float       *P3DGMeshData::GetVAttrBuffer
    }
  }
 
-unsigned int       P3DGMeshData::GetPrimitiveCount
+unsigned_int32       P3DGMeshData::GetPrimitiveCount
                                       () const
  {
   return(PrimitiveCount);
  }
 
-unsigned int      *P3DGMeshData::GetPrimitiveBuffer
+unsigned_int32      *P3DGMeshData::GetPrimitiveBuffer
                                       ()
  {
   return(PrimitiveTypes);
  }
 
 const
-unsigned int      *P3DGMeshData::GetPrimitiveBuffer
+unsigned_int32      *P3DGMeshData::GetPrimitiveBuffer
                                       () const
  {
   return(PrimitiveTypes);
  }
 
 
-unsigned int       P3DGMeshData::GetIndexCount
+unsigned_int32       P3DGMeshData::GetIndexCount
                                       () const
  {
   return(VAttrValueIndexCount);
  }
 
-unsigned int      *P3DGMeshData::GetIndexBuffer
-                                      (unsigned int        Attr) const
+unsigned_int32      *P3DGMeshData::GetIndexBuffer
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -205,14 +203,14 @@ unsigned int      *P3DGMeshData::GetIndexBuffer
    }
  }
 
-unsigned int       P3DGMeshData::GetVAttrCountI
+unsigned_int32       P3DGMeshData::GetVAttrCountI
                                       () const
  {
   return(VAttrCountI);
  }
 
 float             *P3DGMeshData::GetVAttrBufferI
-                                      (unsigned int        Attr)
+                                      (unsigned_int32        Attr)
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -225,7 +223,7 @@ float             *P3DGMeshData::GetVAttrBufferI
  }
 
 const float       *P3DGMeshData::GetVAttrBufferI
-                                      (unsigned int        Attr) const
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_GMESH_MAX_ATTRS)
    {
@@ -238,13 +236,13 @@ const float       *P3DGMeshData::GetVAttrBufferI
  }
 
 
-unsigned int       P3DGMeshData::GetIndexCountI
+unsigned_int32       P3DGMeshData::GetIndexCountI
                                       () const
  {
   return(IndexCountI);
  }
 
-unsigned int      *P3DGMeshData::GetIndexBufferI
+unsigned_int32      *P3DGMeshData::GetIndexBufferI
                                       () const
  {
   return(IndexBufferI);
@@ -254,7 +252,7 @@ P3DGMeshData      *P3DGMeshData::CreateCopy
                                       () const
  {
   P3DGMeshData    *Result;
-  unsigned int     Index;
+  unsigned_int32     Index;
 
   Result = new P3DGMeshData(VAttrValueCounts,
                             PrimitiveCount,
@@ -274,10 +272,10 @@ P3DGMeshData      *P3DGMeshData::CreateCopy
    {
     memcpy(Result->VAttrValueIndices[Index],
            VAttrValueIndices[Index],
-           sizeof(unsigned int) * VAttrValueIndexCount);
+           sizeof(unsigned_int32) * VAttrValueIndexCount);
    }
 
-  memcpy(Result->PrimitiveTypes,PrimitiveTypes,sizeof(unsigned int) * PrimitiveCount);
+  memcpy(Result->PrimitiveTypes,PrimitiveTypes,sizeof(unsigned_int32) * PrimitiveCount);
 
   for (Index = 0; Index < P3D_GMESH_MAX_ATTRS; Index++)
    {
@@ -286,7 +284,7 @@ P3DGMeshData      *P3DGMeshData::CreateCopy
            sizeof(float) * (Index == P3D_ATTR_TEXCOORD0 ? 2 : 3) * VAttrCountI);
    }
 
-  memcpy(Result->IndexBufferI,IndexBufferI,sizeof(unsigned int) * IndexCountI);
+  memcpy(Result->IndexBufferI,IndexBufferI,sizeof(unsigned_int32) * IndexCountI);
 
   return(Result);
  }

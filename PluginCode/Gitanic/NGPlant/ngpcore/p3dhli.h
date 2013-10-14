@@ -47,21 +47,21 @@ class P3D_DLL_ENTRY P3DHLIVAttrBuffers
 
                    P3DHLIVAttrBuffers ();
 
-  void             AddAttr            (unsigned int        Attr,
+  void             AddAttr            (unsigned_int32        Attr,
                                        void               *Data,
-                                       unsigned int        Offset,
-                                       unsigned int        Stride);
+                                       unsigned_int32        Offset,
+                                       unsigned_int32        Stride);
 
-  bool             HasAttr            (unsigned int        Attr) const;
-  void            *GetAttrBuffer      (unsigned int        Attr) const;
-  unsigned int     GetAttrOffset      (unsigned int        Attr) const;
-  unsigned int     GetAttrStride      (unsigned int        Attr) const;
+  bool             HasAttr            (unsigned_int32        Attr) const;
+  void            *GetAttrBuffer      (unsigned_int32        Attr) const;
+  unsigned_int32     GetAttrOffset      (unsigned_int32        Attr) const;
+  unsigned_int32     GetAttrStride      (unsigned_int32        Attr) const;
 
   private          :
 
   void            *Buffers[P3D_MAX_ATTRS];
-  unsigned int     Offsets[P3D_MAX_ATTRS];
-  unsigned int     Strides[P3D_MAX_ATTRS];
+  unsigned_int32     Offsets[P3D_MAX_ATTRS];
+  unsigned_int32     Strides[P3D_MAX_ATTRS];
  };
 
 /******************************************************************************/
@@ -75,19 +75,19 @@ class P3D_DLL_ENTRY P3DHLIVAttrFormat
  {
   public           :
 
-                   P3DHLIVAttrFormat  (unsigned int        Stride);
+                   P3DHLIVAttrFormat  (unsigned_int32        Stride);
 
-  bool             HasAttr            (unsigned int        Attr) const;
-  unsigned int     GetAttrOffset      (unsigned int        Attr) const;
-  unsigned int     GetStride          () const;
-  void             AddAttr            (unsigned int        Attr,
-                                       unsigned int        Offset);
+  bool             HasAttr            (unsigned_int32        Attr) const;
+  unsigned_int32     GetAttrOffset      (unsigned_int32        Attr) const;
+  unsigned_int32     GetStride          () const;
+  void             AddAttr            (unsigned_int32        Attr,
+                                       unsigned_int32        Offset);
 
   private          :
 
   bool             Enabled[P3D_MAX_ATTRS];
-  unsigned int     Offsets[P3D_MAX_ATTRS];
-  unsigned int     Stride;
+  unsigned_int32     Offsets[P3D_MAX_ATTRS];
+  unsigned_int32     Stride;
  };
 
 class P3DHLIPlantInstance;
@@ -100,70 +100,70 @@ class P3D_DLL_ENTRY P3DHLIPlantTemplate
                                                           *SourceStream);
                    P3DHLIPlantTemplate(const P3DPlantModel*SourceModel);
 
-  unsigned int     GetGroupCount      () const;
+  unsigned_int32     GetGroupCount      () const;
 
-  const char      *GetGroupName       (unsigned int        GroupIndex) const;
+  const char      *GetGroupName       (unsigned_int32        GroupIndex) const;
 
   const
-  P3DMaterialDef  *GetMaterial        (unsigned int        GroupIndex) const;
+  P3DMaterialDef  *GetMaterial        (unsigned_int32        GroupIndex) const;
 
   void             GetBillboardSize   (float              *Width,
                                        float              *Height,
-                                       unsigned int        GroupIndex) const;
+                                       unsigned_int32        GroupIndex) const;
 
-  bool             IsCloneable        (unsigned int        GroupIndex,
+  bool             IsCloneable        (unsigned_int32        GroupIndex,
                                        bool                AllowScaling) const;
 
   /* LOD-related */
 
   bool             IsLODVisRangeEnabled
-                                      (unsigned int        GroupIndex) const;
+                                      (unsigned_int32        GroupIndex) const;
 
   void             GetLODVisRange     (float              *MinLOD,
                                        float              *MaxLOD,
-                                       unsigned int        GroupIndex) const;
+                                       unsigned_int32        GroupIndex) const;
 
   /* Per-attribute mode */
 
-  unsigned int     GetVAttrCount      (unsigned int        GroupIndex,
-                                       unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const;
 
   void             FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr) const;
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const;
 
-  unsigned int     GetPrimitiveCount  (unsigned int        GroupIndex) const;
-  unsigned int     GetPrimitiveType   (unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveCount  (unsigned_int32        GroupIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveIndex) const;
 
   void             FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   /* Indexed mode */
 
-  unsigned int     GetVAttrCountI     (unsigned int        GroupIndex) const;
+  unsigned_int32     GetVAttrCountI     (unsigned_int32        GroupIndex) const;
 
   void             FillCloneVAttrBuffersI
                                       (const P3DHLIVAttrBuffers
                                                           *VAttrBuffers,
-                                       unsigned int        GroupIndex) const;
+                                       unsigned_int32        GroupIndex) const;
 
-  unsigned int     GetIndexCount      (unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveType) const;
+  unsigned_int32     GetIndexCount      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveType) const;
 
   void             FillIndexBuffer    (void               *IndexBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   P3DHLIPlantInstance
-                  *CreateInstance     (unsigned int        BaseSeed = 0) const;
+                  *CreateInstance     (unsigned_int32        BaseSeed = 0) const;
 
   private          :
 
@@ -176,10 +176,10 @@ class P3D_DLL_ENTRY P3DHLIPlantInstance
   public           :
 
                    P3DHLIPlantInstance(const P3DPlantModel*Model,
-                                       unsigned int        BaseSeed);
+                                       unsigned_int32        BaseSeed);
 
-  unsigned int     GetBranchCount     (unsigned int        GroupIndex) const;
-  void             GetBranchCountMulti(unsigned int       *BranchCounts) const;
+  unsigned_int32     GetBranchCount     (unsigned_int32        GroupIndex) const;
+  void             GetBranchCountMulti(unsigned_int32       *BranchCounts) const;
   void             GetBoundingBox     (float              *Min,
                                        float              *Max) const;
 
@@ -192,29 +192,29 @@ class P3D_DLL_ENTRY P3DHLIPlantInstance
                                       (float              *OffsetBuffer,
                                        float              *OrientationBuffer,
                                        float              *ScaleBuffer,
-                                       unsigned int        GroupIndex) const;
+                                       unsigned_int32        GroupIndex) const;
 
   /* Per-attribute mode */
 
-  unsigned int     GetVAttrCount      (unsigned int        GroupIndex,
-                                       unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const;
 
   void             FillVAttrBuffer    (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr) const;
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const;
 
   /* Indexed mode */
 
-  unsigned int     GetVAttrCountI     (unsigned int        GroupIndex) const;
+  unsigned_int32     GetVAttrCountI     (unsigned_int32        GroupIndex) const;
 
   void             FillVAttrBufferI   (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
+                                       unsigned_int32        GroupIndex,
                                        const P3DHLIVAttrFormat
                                                           *VAttrFormat) const;
 
   void             FillVAttrBuffersI  (const P3DHLIVAttrBuffers
                                                           *VAttrBuffers,
-                                       unsigned int        GroupIndex) const;
+                                       unsigned_int32        GroupIndex) const;
 
   void             FillVAttrBuffersIMulti
                                       (P3DHLIVAttrBufferSet
@@ -225,7 +225,7 @@ class P3D_DLL_ENTRY P3DHLIPlantInstance
   bool             IsRandomnessEnabled() const;
 
   const P3DPlantModel                 *Model;
-  unsigned int                         BaseSeed;
+  unsigned_int32                         BaseSeed;
  };
 
 #endif

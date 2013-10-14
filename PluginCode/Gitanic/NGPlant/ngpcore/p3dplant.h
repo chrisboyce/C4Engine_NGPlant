@@ -32,8 +32,6 @@
 #ifndef __P3DPLANT_H__
 #define __P3DPLANT_H__
 
-#include "../stdafx.h"
-
 #include <ngpcore/p3dtypes.h>
 #include <ngpcore/p3dmathspline.h>
 
@@ -44,7 +42,7 @@ class P3DTubeAxis
   virtual         ~P3DTubeAxis        () {};
 
   virtual
-  unsigned int     GetResolution      () const = 0;
+  unsigned_int32     GetResolution      () const = 0;
 
   virtual
   float            GetLength          () const = 0;
@@ -58,7 +56,7 @@ class P3DTubeAxis
                                        float               Offset) const = 0;
   virtual
   void             GetOrientationAt   (float              *Orientation,
-                                       unsigned int        SegIndex) const = 0;
+                                       unsigned_int32        SegIndex) const = 0;
  };
 
 class P3DTubeProfile
@@ -68,15 +66,15 @@ class P3DTubeProfile
   virtual         ~P3DTubeProfile     () {};
 
   virtual
-  unsigned int     GetResolution      () const = 0;
+  unsigned_int32     GetResolution      () const = 0;
 
   virtual void     GetPoint           (float              &x,
                                        float              &y,
-                                       unsigned int        t) const = 0;
+                                       unsigned_int32        t) const = 0;
 
   virtual void     GetNormal          (float              &x,
                                        float              &y,
-                                       unsigned int        t) const = 0;
+                                       unsigned_int32        t) const = 0;
  };
 
 class P3DTubeProfileScale
@@ -95,10 +93,10 @@ class P3DTubeAxisLine : public P3DTubeAxis
   public           :
 
                    P3DTubeAxisLine    (float               length,
-                                       unsigned int        resolution);
+                                       unsigned_int32        resolution);
 
   virtual
-  unsigned int     GetResolution      () const;
+  unsigned_int32     GetResolution      () const;
 
   virtual
   float            GetLength          () const;
@@ -112,11 +110,11 @@ class P3DTubeAxisLine : public P3DTubeAxis
                                        float               Offset) const;
   virtual
   void             GetOrientationAt   (float              *Orientation,
-                                       unsigned int        SegIndex) const;
+                                       unsigned_int32        SegIndex) const;
 
   private          :
 
-  unsigned int     Resolution;
+  unsigned_int32     Resolution;
   float            Length;
  };
 
@@ -125,12 +123,12 @@ class P3DTubeAxisSegLine : public P3DTubeAxis
   public           :
 
                    P3DTubeAxisSegLine (float               Length,
-                                       unsigned int        Resolution);
+                                       unsigned_int32        Resolution);
 
   virtual         ~P3DTubeAxisSegLine ();
 
   virtual
-  unsigned int     GetResolution      () const;
+  unsigned_int32     GetResolution      () const;
 
   virtual
   float            GetLength          () const;
@@ -144,19 +142,19 @@ class P3DTubeAxisSegLine : public P3DTubeAxis
                                        float               Offset) const;
   virtual
   void             GetOrientationAt   (float              *Orientation,
-                                       unsigned int        SegIndex) const;
+                                       unsigned_int32        SegIndex) const;
 
-  void             SetSegOrientation  (unsigned int        SegIndex,
+  void             SetSegOrientation  (unsigned_int32        SegIndex,
                                        float              *Orientation);
 
-  const float     *GetSegOrientation  (unsigned int        SegIndex) const
+  const float     *GetSegOrientation  (unsigned_int32        SegIndex) const
    {
     return(&(SegOrientations[SegIndex * 4]));
    }
 
   private          :
 
-  unsigned int     Resolution;
+	  unsigned_int32     Resolution;
   float            Length;
   float           *SegOrientations;
  };
@@ -166,22 +164,22 @@ class P3DTubeProfileCircle : public P3DTubeProfile
   public           :
 
                    P3DTubeProfileCircle
-                                      (unsigned int        resolution);
+                                      (unsigned_int32        resolution);
 
   virtual
-  unsigned int     GetResolution      () const;
+  unsigned_int32     GetResolution      () const;
 
   virtual void     GetPoint           (float              &x,
                                        float              &y,
-                                       unsigned int        t) const;
+                                       unsigned_int32        t) const;
 
   virtual void     GetNormal          (float              &x,
                                        float              &y,
-                                       unsigned int        t) const;
+                                       unsigned_int32        t) const;
 
   private          :
 
-  unsigned int     Resolution;
+  unsigned_int32     Resolution;
  };
 
 class P3DTubeProfileScaleLinear : public P3DTubeProfileScale

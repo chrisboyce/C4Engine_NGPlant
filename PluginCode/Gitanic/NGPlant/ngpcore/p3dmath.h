@@ -31,9 +31,10 @@
 
 #ifndef __P3DMATH_H__
 #define __P3DMATH_H__
-#include <stdafx.h>
-#define P3DMATH_PI  (3.1415926)
-#define P3DMATH_2PI (P3DMATH_PI * 2.0)
+#include <C4Constants.h>
+
+#define P3DMATH_PI  K::pi
+#define P3DMATH_2PI K::two_pi
 
 #define P3DMATH_DEG2RAD(deg) ((deg) * P3DMATH_PI / 180.0f)
 #define P3DMATH_RAD2DEG(rad) ((rad) * 180.0f / P3DMATH_PI)
@@ -228,7 +229,7 @@ class P3DQuaternionf
 
   void             Set                (const float        *q)
    {
-    for (unsigned int i = 0; i < 4; i++)
+    for (unsigned_int32 i = 0; i < 4; i++)
      {
       this->q[i] = q[i];
      }

@@ -45,15 +45,15 @@ class P3DInputStringStreamString : public P3DInputStringStream
 
   virtual
   void             ReadString         (char               *Buffer,
-                                       unsigned int        BufferSize);
+                                       unsigned_int32        BufferSize);
 
   virtual bool     Eof                () const;
 
   private          :
 
   char            *Data;
-  unsigned int     DataSize;
-  unsigned int     Pos;
+  unsigned_int32     DataSize;
+  unsigned_int32     Pos;
  };
 
 #endif

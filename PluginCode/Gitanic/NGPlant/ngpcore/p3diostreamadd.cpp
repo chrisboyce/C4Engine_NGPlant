@@ -29,8 +29,7 @@
 
 ***************************************************************************/
 
-#include <string.h>
-#include <stdafx.h>
+
 #include <ngpcore/p3diostream.h>
 #include <ngpcore/p3diostreamadd.h>
 
@@ -54,10 +53,10 @@
 
 void               P3DInputStringStreamString::ReadString
                                       (char               *Buffer,
-                                       unsigned int        BufferSize)
+                                       unsigned_int32        BufferSize)
  {
   bool                                 Done;
-  unsigned int                         Index;
+  unsigned_int32                         Index;
   char                                 CurrChar;
 
   if (BufferSize < 2)

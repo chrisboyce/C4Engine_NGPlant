@@ -61,40 +61,40 @@ class P3DStemModelGMesh : public P3DStemModel
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
 
   virtual void     FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const;
+                                       unsigned_int32        Attr) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual void     FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const;
 
   virtual
-  unsigned int     GetIndexCount      (unsigned int        PrimitiveType) const;
+  unsigned_int32     GetIndexCount      (unsigned_int32        PrimitiveType) const;
 
   virtual void     FillIndexBuffer    (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   virtual void     Save               (P3DOutputStringStream
                                                           *TargetStream) const;
@@ -107,13 +107,13 @@ class P3DStemModelGMesh : public P3DStemModel
   void             SetMeshData        (P3DGMeshData       *MeshData);
 
   static void      FillIndexArray     (unsigned short     *Target,
-                                       const unsigned int *Source,
-                                       unsigned int        Count,
-                                       unsigned int        IndexBase);
-  static void      FillIndexArray     (unsigned int       *Target,
-                                       const unsigned int *Source,
-                                       unsigned int        Count,
-                                       unsigned int        IndexBase);
+                                       const unsigned_int32 *Source,
+                                       unsigned_int32        Count,
+                                       unsigned_int32        IndexBase);
+  static void      FillIndexArray     (unsigned_int32       *Target,
+                                       const unsigned_int32 *Source,
+                                       unsigned_int32        Count,
+                                       unsigned_int32        IndexBase);
 
   private          :
 

@@ -29,8 +29,6 @@
 
 ***************************************************************************/
 
-#include <string.h>
-#include <stdafx.h>
 #include <ngpcore/p3dexcept.h>
 
 const char        *P3DException::GetMessage

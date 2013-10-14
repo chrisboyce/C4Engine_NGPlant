@@ -44,7 +44,7 @@ class P3DStemModelWingsInstance : public P3DStemModelInstance
                                                           *ParentStemModel,
                                        const P3DStemModelTubeInstance
                                                           *ParentInstance,
-                                       unsigned int        SectionCount,
+                                       unsigned_int32        SectionCount,
                                        float               Width,
                                        const P3DMathNaturalCubicSpline
                                                           *Curvature,
@@ -56,23 +56,23 @@ class P3DStemModelWingsInstance : public P3DStemModelInstance
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
   virtual void     GetVAttrValue      (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
   virtual void     GetVAttrValueI     (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual float    GetLength          () const;
   virtual float    GetMinRadiusAt     (float               Offset) const;
@@ -112,7 +112,7 @@ class P3DStemModelWingsInstance : public P3DStemModelInstance
 
   const P3DStemModelTube              *ParentStemModel;
   const P3DStemModelTubeInstance      *ParentInstance;
-  unsigned int                         SectionCount;
+  unsigned_int32                         SectionCount;
   float                                Width;
   const P3DMathNaturalCubicSpline     *Curvature;
   float                                Thickness;
@@ -125,7 +125,7 @@ class P3DStemModelWingsInstance : public P3DStemModelInstance
                                                           *ParentStemModel,
                                        const P3DStemModelTubeInstance
                                                           *ParentInstance,
-                                       unsigned int        SectionCount,
+                                       unsigned_int32        SectionCount,
                                        float               Width,
                                        const P3DMathNaturalCubicSpline
                                                           *Curvature,
@@ -155,8 +155,8 @@ class P3DStemModelWingsInstance : public P3DStemModelInstance
    }
  }
 
-unsigned int       P3DStemModelWingsInstance::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelWingsInstance::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if ((Attr == P3D_ATTR_NORMAL)   ||
       (Attr == P3D_ATTR_BINORMAL) ||
@@ -172,12 +172,12 @@ unsigned int       P3DStemModelWingsInstance::GetVAttrCount
 
 void               P3DStemModelWingsInstance::GetVAttrValue
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   int                                  XSect;
   int                                  YSect;
-  unsigned int                         RowSize;
+  unsigned_int32                         RowSize;
 
   if (Index >= GetVAttrCount(Attr))
    {
@@ -244,7 +244,7 @@ void               P3DStemModelWingsInstance::GetVAttrValue
    }
  }
 
-unsigned int       P3DStemModelWingsInstance::GetVAttrCountI
+unsigned_int32       P3DStemModelWingsInstance::GetVAttrCountI
                                       () const
  {
   return(GetVAttrCount(P3D_ATTR_NORMAL));
@@ -252,10 +252,10 @@ unsigned int       P3DStemModelWingsInstance::GetVAttrCountI
 
 void               P3DStemModelWingsInstance::GetVAttrValueI
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
-  unsigned int                         RowSize;
+  unsigned_int32                         RowSize;
   int                                  XSect;
   int                                  YSect;
   bool                                 Opposite;
@@ -303,14 +303,14 @@ void               P3DStemModelWingsInstance::GetVAttrValueI
    }
  }
 
-unsigned int       P3DStemModelWingsInstance::GetPrimitiveCount
+unsigned_int32       P3DStemModelWingsInstance::GetPrimitiveCount
                                       () const
  {
   return(SectionCount * 2 * ParentStemModel->GetAxisResolution());
  }
 
-unsigned int       P3DStemModelWingsInstance::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelWingsInstance::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
@@ -338,7 +338,7 @@ void               P3DStemModelWingsInstance::GetWorldTransform
                                       (float              *Transform) const
  {
   /*FIXME: need standard way to copy matrix into float array */
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     Transform[i] = WorldTransform.m[i];
    }
@@ -569,8 +569,8 @@ bool               P3DStemModelWings::IsCloneable
   return(false);
  }
 
-unsigned int       P3DStemModelWings::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelWings::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if ((Attr == P3D_ATTR_NORMAL)   ||
       (Attr == P3D_ATTR_BINORMAL) ||
@@ -586,36 +586,36 @@ unsigned int       P3DStemModelWings::GetVAttrCount
 
 void               P3DStemModelWings::FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        Attr) const
  {
   //NOTE: wings model cannot be cloned, so call is ignored
  }
 
-unsigned int       P3DStemModelWings::GetPrimitiveCount
+unsigned_int32       P3DStemModelWings::GetPrimitiveCount
                                       () const
  {
   return(SectionCount * 2 * ParentStemModel->GetAxisResolution());
  }
 
-unsigned int       P3DStemModelWings::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelWings::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
 
 void               P3DStemModelWings::FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
-  unsigned int                         PrimitiveIndex;
-  unsigned int                         PrimitiveCount;
+  unsigned_int32                         PrimitiveIndex;
+  unsigned_int32                         PrimitiveCount;
   unsigned short                      *ShortBuffer;
-  unsigned int                        *IntBuffer;
+  unsigned_int32                        *IntBuffer;
 
   ShortBuffer = (unsigned short*)IndexBuffer;
-  IntBuffer   = (unsigned int*)IndexBuffer;
+  IntBuffer   = (unsigned_int32*)IndexBuffer;
 
   PrimitiveCount = GetPrimitiveCount();
 
@@ -697,7 +697,7 @@ void               P3DStemModelWings::FillVAttrIndexBuffer
    }
  }
 
-unsigned int       P3DStemModelWings::GetVAttrCountI
+unsigned_int32       P3DStemModelWings::GetVAttrCountI
                                       () const
  {
   return(GetVAttrCount(P3D_ATTR_NORMAL));
@@ -705,14 +705,14 @@ unsigned int       P3DStemModelWings::GetVAttrCountI
 
 void               P3DStemModelWings::FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const
  {
   //NOTE: wings model cannot be cloned, so call is ignored
  }
 
-unsigned int       P3DStemModelWings::GetIndexCount
-                                      (unsigned int        PrimitiveType) const
+unsigned_int32       P3DStemModelWings::GetIndexCount
+                                      (unsigned_int32        PrimitiveType) const
  {
   if (PrimitiveType == P3D_TRIANGLE_LIST)
    {
@@ -726,17 +726,17 @@ unsigned int       P3DStemModelWings::GetIndexCount
 
 void               P3DStemModelWings::FillIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
-  unsigned int                         AxisResolution;
-  unsigned int                         Y;
-  unsigned int                         X;
-  unsigned int                         BaseIndex;
-  unsigned int                         IndexOffset;
+  unsigned_int32                         AxisResolution;
+  unsigned_int32                         Y;
+  unsigned_int32                         X;
+  unsigned_int32                         BaseIndex;
+  unsigned_int32                         IndexOffset;
   unsigned short                      *ShortBuffer;
-  unsigned int                        *IntBuffer;
+  unsigned_int32                        *IntBuffer;
 
   if (PrimitiveType != P3D_TRIANGLE_LIST)
    {
@@ -744,7 +744,7 @@ void               P3DStemModelWings::FillIndexBuffer
    }
 
   ShortBuffer = (unsigned short*)IndexBuffer;
-  IntBuffer   = (unsigned int*)IndexBuffer;
+  IntBuffer   = (unsigned_int32*)IndexBuffer;
 
   AxisResolution = ParentStemModel->GetAxisResolution();
   BaseIndex      = 0;
@@ -818,7 +818,7 @@ void               P3DStemModelWings::Load
  {
   char                                 StrValue[255 + 1];
   float                                FloatValue;
-  unsigned int                         UintValue;
+  unsigned_int32                         UintValue;
 
   SourceStream->ReadFmtStringTagged("WingsAngle","f",&FloatValue);
   SetWingsAngle(FloatValue);
@@ -857,7 +857,7 @@ float              P3DStemModelWings::GetWidth
  }
 
 void               P3DStemModelWings::SetSectionCount
-                                      (unsigned int        SectionCount)
+                                      (unsigned_int32        SectionCount)
  {
   if (SectionCount > 1)
    {
@@ -869,7 +869,7 @@ void               P3DStemModelWings::SetSectionCount
    }
  }
 
-unsigned int       P3DStemModelWings::GetSectionCount
+unsigned_int32       P3DStemModelWings::GetSectionCount
                                       () const
  {
   return(SectionCount);

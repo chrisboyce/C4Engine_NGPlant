@@ -29,21 +29,20 @@
 
 ***************************************************************************/
 
-#include <math.h>
-#include <stdafx.h>
+
 #include <ngpcore/p3dmodel.h>
 #include <ngpcore/p3dmodelstemquad.h>
 #include <ngpcore/p3dhli.h>
 
 /* calculate total group count (including plant base group) */
 static
-unsigned int       CalcInternalGroupCount
+unsigned_int32       CalcInternalGroupCount
                                       (const P3DBranchModel
                                                           *BranchModel)
  {
-  unsigned int                         GroupCount;
-  unsigned int                         SubBranchIndex;
-  unsigned int                         SubBranchCount;
+  unsigned_int32                         GroupCount;
+  unsigned_int32                         SubBranchIndex;
+  unsigned_int32                         SubBranchCount;
 
   GroupCount = 1;
 
@@ -112,7 +111,7 @@ class P3DHLIBranchCalculator : public P3DBranchingFactory
                                                           *Parent,
                                        const P3DBranchModel
                                                           *CountedBranch,
-                                       unsigned int       *Counter)
+                                       unsigned_int32       *Counter)
    {
     this->RNG           = RNG;
     this->BranchModel   = BranchModel;
@@ -132,8 +131,8 @@ class P3DHLIBranchCalculator : public P3DBranchingFactory
 
     const P3DStemModel              *StemModel;
     P3DStemModelInstance            *Instance;
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
 
     StemModel = BranchModel->GetStemModel();
 
@@ -172,7 +171,7 @@ class P3DHLIBranchCalculator : public P3DBranchingFactory
   const P3DBranchModel                *BranchModel;
   const P3DStemModelInstance          *Parent;
   const P3DBranchModel                *CountedBranch;
-  unsigned int                        *Counter;
+  unsigned_int32                        *Counter;
  };
 
 class P3DHLIBranchCalculatorMulti : public P3DBranchingFactory
@@ -185,8 +184,8 @@ class P3DHLIBranchCalculatorMulti : public P3DBranchingFactory
                                                           *BranchModel,
                                        const P3DStemModelInstance
                                                           *Parent,
-                                       unsigned int        GroupIndex,
-                                       unsigned int       *Counters)
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32       *Counters)
    {
     this->RNG           = RNG;
     this->BranchModel   = BranchModel;
@@ -201,9 +200,9 @@ class P3DHLIBranchCalculatorMulti : public P3DBranchingFactory
    {
     const P3DStemModel              *StemModel;
     P3DStemModelInstance            *Instance;
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
-    unsigned int                     SubGroupIndex;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
+    unsigned_int32                     SubGroupIndex;
 
     StemModel = BranchModel->GetStemModel();
 
@@ -248,8 +247,8 @@ class P3DHLIBranchCalculatorMulti : public P3DBranchingFactory
   P3DMathRNG                          *RNG;
   const P3DBranchModel                *BranchModel;
   const P3DStemModelInstance          *Parent;
-  unsigned int                         GroupIndex;
-  unsigned int                        *Counters;
+  unsigned_int32                         GroupIndex;
+  unsigned_int32                        *Counters;
  };
 
 class P3DHLIFillCloneTransformBufferHelper : public P3DBranchingFactory
@@ -331,8 +330,8 @@ class P3DHLIFillCloneTransformBufferHelper : public P3DBranchingFactory
        }
      }
 
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
 
     SubBranchCount = BranchModel->GetSubBranchCount();
 
@@ -379,7 +378,7 @@ class P3DHLIFillVAttrBufferHelper : public P3DBranchingFactory
                                                           *Parent,
                                        const P3DBranchModel
                                                           *RequiredBranch,
-                                       unsigned int        Attr,
+                                       unsigned_int32        Attr,
                                        unsigned char     **Buffer)
    {
     this->RNG            = RNG;
@@ -410,8 +409,8 @@ class P3DHLIFillVAttrBufferHelper : public P3DBranchingFactory
 
     if (BranchModel == RequiredBranch)
      {
-      unsigned int                     VAttrIndex;
-      unsigned int                     VAttrCount;
+      unsigned_int32                     VAttrIndex;
+      unsigned_int32                     VAttrCount;
 
       VAttrCount = Instance->GetVAttrCount(Attr);
 
@@ -450,8 +449,8 @@ class P3DHLIFillVAttrBufferHelper : public P3DBranchingFactory
        }
      }
 
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
 
     SubBranchCount = BranchModel->GetSubBranchCount();
 
@@ -480,7 +479,7 @@ class P3DHLIFillVAttrBufferHelper : public P3DBranchingFactory
   const P3DBranchModel                *BranchModel;
   const P3DStemModelInstance          *Parent;
   const P3DBranchModel                *RequiredBranch;
-  unsigned int                         Attr;
+  unsigned_int32                         Attr;
   unsigned char                      **Buffer;
  };
 
@@ -528,8 +527,8 @@ class P3DHLIFillVAttrBufferIHelper : public P3DBranchingFactory
 
     if (BranchModel == RequiredBranch)
      {
-      unsigned int                     VAttrIndex;
-      unsigned int                     VAttrCount;
+      unsigned_int32                     VAttrIndex;
+      unsigned_int32                     VAttrCount;
 
       VAttrCount = Instance->GetVAttrCountI();
 
@@ -581,8 +580,8 @@ class P3DHLIFillVAttrBufferIHelper : public P3DBranchingFactory
        }
      }
 
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
 
     SubBranchCount = BranchModel->GetSubBranchCount();
 
@@ -659,8 +658,8 @@ class P3DHLIFillVAttrBuffersIHelper : public P3DBranchingFactory
 
     if (BranchModel == RequiredBranch)
      {
-      unsigned int                     VAttrIndex;
-      unsigned int                     VAttrCount;
+      unsigned_int32                     VAttrIndex;
+      unsigned_int32                     VAttrCount;
 
       VAttrCount = Instance->GetVAttrCountI();
 
@@ -728,8 +727,8 @@ class P3DHLIFillVAttrBuffersIHelper : public P3DBranchingFactory
        }
      }
 
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
 
     SubBranchCount = BranchModel->GetSubBranchCount();
 
@@ -772,7 +771,7 @@ class P3DHLIFillVAttrBuffersIMultiHelper : public P3DBranchingFactory
                                                           *BranchModel,
                                        const P3DStemModelInstance
                                                           *Parent,
-                                       unsigned int        GroupIndex,
+                                       unsigned_int32        GroupIndex,
                                        P3DHLIVAttrBufferSet
                                                           *VAttrBufferSetArray)
    {
@@ -803,8 +802,8 @@ class P3DHLIFillVAttrBuffersIMultiHelper : public P3DBranchingFactory
 
     if (Instance != 0)
      {
-      unsigned int                     VAttrIndex;
-      unsigned int                     VAttrCount;
+      unsigned_int32                     VAttrIndex;
+      unsigned_int32                     VAttrCount;
 
       VAttrCount = Instance->GetVAttrCountI();
 
@@ -872,9 +871,9 @@ class P3DHLIFillVAttrBuffersIMultiHelper : public P3DBranchingFactory
        }
      }
 
-    unsigned int                     SubBranchIndex;
-    unsigned int                     SubBranchCount;
-    unsigned int                     SubGroupIndex;
+    unsigned_int32                     SubBranchIndex;
+    unsigned_int32                     SubBranchCount;
+    unsigned_int32                     SubGroupIndex;
 
     if (StemModel != 0)
      {
@@ -914,14 +913,14 @@ class P3DHLIFillVAttrBuffersIMultiHelper : public P3DBranchingFactory
   P3DMathRNG                          *RNG;
   const P3DBranchModel                *BranchModel;
   const P3DStemModelInstance          *Parent;
-  unsigned int                         GroupIndex;
+  unsigned_int32                         GroupIndex;
   P3DHLIVAttrBufferSet                *VAttrBufferSetArray;
  };
 
                    P3DHLIVAttrFormat::P3DHLIVAttrFormat
-                                      (unsigned int        Stride)
+                                      (unsigned_int32        Stride)
  {
-  for (unsigned int Index = 0; Index < P3D_MAX_ATTRS; Index++)
+  for (unsigned_int32 Index = 0; Index < P3D_MAX_ATTRS; Index++)
    {
     Enabled[Index] = false;
     Offsets[Index] = 0;
@@ -931,7 +930,7 @@ class P3DHLIFillVAttrBuffersIMultiHelper : public P3DBranchingFactory
  }
 
 bool               P3DHLIVAttrFormat::HasAttr
-                                      (unsigned int        Attr) const
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_MAX_ATTRS)
    {
@@ -943,8 +942,8 @@ bool               P3DHLIVAttrFormat::HasAttr
    }
  }
 
-unsigned int       P3DHLIVAttrFormat::GetAttrOffset
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DHLIVAttrFormat::GetAttrOffset
+                                      (unsigned_int32        Attr) const
  {
   if (Attr < P3D_MAX_ATTRS)
    {
@@ -956,15 +955,15 @@ unsigned int       P3DHLIVAttrFormat::GetAttrOffset
    }
  }
 
-unsigned int       P3DHLIVAttrFormat::GetStride
+unsigned_int32       P3DHLIVAttrFormat::GetStride
                                       () const
  {
   return(Stride);
  }
 
 void               P3DHLIVAttrFormat::AddAttr
-                                      (unsigned int        Attr,
-                                       unsigned int        Offset)
+                                      (unsigned_int32        Attr,
+                                       unsigned_int32        Offset)
  {
   if (Attr < P3D_MAX_ATTRS)
    {
@@ -977,7 +976,7 @@ void               P3DHLIVAttrFormat::AddAttr
    }
  }
 
-static void        CheckVAttrValidity (unsigned int        Attr)
+static void        CheckVAttrValidity (unsigned_int32        Attr)
  {
   if (Attr >= P3D_MAX_ATTRS)
    {
@@ -988,7 +987,7 @@ static void        CheckVAttrValidity (unsigned int        Attr)
                    P3DHLIVAttrBuffers::P3DHLIVAttrBuffers
                                       ()
  {
-  for (unsigned int Index = 0; Index < P3D_MAX_ATTRS; Index++)
+  for (unsigned_int32 Index = 0; Index < P3D_MAX_ATTRS; Index++)
    {
     Buffers[Index] = 0;
     Offsets[Index] = 0;
@@ -997,10 +996,10 @@ static void        CheckVAttrValidity (unsigned int        Attr)
  }
 
 void               P3DHLIVAttrBuffers::AddAttr
-                                      (unsigned int        Attr,
+                                      (unsigned_int32        Attr,
                                        void               *Data,
-                                       unsigned int        Offset,
-                                       unsigned int        Stride)
+                                       unsigned_int32        Offset,
+                                       unsigned_int32        Stride)
  {
   CheckVAttrValidity(Attr);
 
@@ -1010,7 +1009,7 @@ void               P3DHLIVAttrBuffers::AddAttr
  }
 
 bool               P3DHLIVAttrBuffers::HasAttr
-                                      (unsigned int        Attr) const
+                                      (unsigned_int32        Attr) const
  {
   CheckVAttrValidity(Attr);
 
@@ -1018,23 +1017,23 @@ bool               P3DHLIVAttrBuffers::HasAttr
  }
 
 void              *P3DHLIVAttrBuffers::GetAttrBuffer
-                                      (unsigned int        Attr) const
+                                      (unsigned_int32        Attr) const
  {
   CheckVAttrValidity(Attr);
 
   return(Buffers[Attr]);
  }
 
-unsigned int       P3DHLIVAttrBuffers::GetAttrOffset
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DHLIVAttrBuffers::GetAttrOffset
+                                      (unsigned_int32        Attr) const
  {
   CheckVAttrValidity(Attr);
 
   return(Offsets[Attr]);
  }
 
-unsigned int       P3DHLIVAttrBuffers::GetAttrStride
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DHLIVAttrBuffers::GetAttrStride
+                                      (unsigned_int32        Attr) const
  {
   CheckVAttrValidity(Attr);
 
@@ -1045,7 +1044,7 @@ static
 const P3DBranchModel
                   *GetBranchModelByIndex
                                       (const P3DPlantModel*Model,
-                                       unsigned int        Index)
+                                       unsigned_int32        Index)
  {
   const P3DBranchModel                *BranchModel;
 
@@ -1075,21 +1074,21 @@ const P3DBranchModel
   Model = SourceModel;
  }
 
-unsigned int       P3DHLIPlantTemplate::GetGroupCount
+unsigned_int32       P3DHLIPlantTemplate::GetGroupCount
                                       () const
  {
   return(CalcInternalGroupCount(Model->GetPlantBase()) - 1);
  }
 
 const char        *P3DHLIPlantTemplate::GetGroupName
-                                      (unsigned int        GroupIndex) const
+                                      (unsigned_int32        GroupIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->GetName());
  }
 
 const
 P3DMaterialDef    *P3DHLIPlantTemplate::GetMaterial
-                                      (unsigned int        GroupIndex) const
+                                      (unsigned_int32        GroupIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetMaterialInstance()->GetMaterialDef());
@@ -1098,7 +1097,7 @@ P3DMaterialDef    *P3DHLIPlantTemplate::GetMaterial
 void               P3DHLIPlantTemplate::GetBillboardSize
                                       (float              *Width,
                                        float              *Height,
-                                       unsigned int        GroupIndex) const
+                                       unsigned_int32        GroupIndex) const
  {
   const P3DBranchModel                *BranchModel;
 
@@ -1121,14 +1120,14 @@ void               P3DHLIPlantTemplate::GetBillboardSize
  }
 
 bool               P3DHLIPlantTemplate::IsCloneable
-                                      (unsigned int        GroupIndex,
+                                      (unsigned_int32        GroupIndex,
                                        bool                AllowScaling) const
  {
   return GetBranchModelByIndex(Model,GroupIndex)->GetStemModel()->IsCloneable(AllowScaling);
  }
 
 bool               P3DHLIPlantTemplate::IsLODVisRangeEnabled
-                                      (unsigned int        GroupIndex) const
+                                      (unsigned_int32        GroupIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetVisRangeState()->IsEnabled());
@@ -1137,15 +1136,15 @@ bool               P3DHLIPlantTemplate::IsLODVisRangeEnabled
 void               P3DHLIPlantTemplate::GetLODVisRange
                                       (float              *MinLOD,
                                        float              *MaxLOD,
-                                       unsigned int        GroupIndex) const
+                                       unsigned_int32        GroupIndex) const
  {
   GetBranchModelByIndex(Model,GroupIndex)->
    GetVisRangeState()->GetRange(MinLOD,MaxLOD);
  }
 
-unsigned int       P3DHLIPlantTemplate::GetVAttrCount
-                                      (unsigned int        GroupIndex,
-                                       unsigned int        Attr) const
+unsigned_int32       P3DHLIPlantTemplate::GetVAttrCount
+                                      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetStemModel()->GetVAttrCount(Attr));
@@ -1153,23 +1152,23 @@ unsigned int       P3DHLIPlantTemplate::GetVAttrCount
 
 void               P3DHLIPlantTemplate::FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const
  {
   GetBranchModelByIndex(Model,GroupIndex)->GetStemModel()->
    FillCloneVAttrBuffer(VAttrBuffer,Attr);
  }
 
-unsigned int       P3DHLIPlantTemplate::GetPrimitiveCount
-                                      (unsigned int        GroupIndex) const
+unsigned_int32       P3DHLIPlantTemplate::GetPrimitiveCount
+                                      (unsigned_int32        GroupIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetStemModel()->GetPrimitiveCount());
  }
 
-unsigned int       P3DHLIPlantTemplate::GetPrimitiveType
-                                      (unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveIndex) const
+unsigned_int32       P3DHLIPlantTemplate::GetPrimitiveType
+                                      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetStemModel()->GetPrimitiveType(PrimitiveIndex));
@@ -1177,17 +1176,17 @@ unsigned int       P3DHLIPlantTemplate::GetPrimitiveType
 
 void               P3DHLIPlantTemplate::FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   GetBranchModelByIndex(Model,GroupIndex)->GetStemModel()->
    FillVAttrIndexBuffer(IndexBuffer,Attr,ElementType,IndexBase);
  }
 
-unsigned int       P3DHLIPlantTemplate::GetVAttrCountI
-                                      (unsigned int        GroupIndex) const
+unsigned_int32       P3DHLIPlantTemplate::GetVAttrCountI
+                                      (unsigned_int32        GroupIndex) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetStemModel()->GetVAttrCountI());
@@ -1196,10 +1195,10 @@ unsigned int       P3DHLIPlantTemplate::GetVAttrCountI
 void               P3DHLIPlantTemplate::FillCloneVAttrBuffersI
                                       (const P3DHLIVAttrBuffers
                                                           *VAttrBuffers,
-                                       unsigned int        GroupIndex) const
+                                       unsigned_int32        GroupIndex) const
  {
   const P3DStemModel                  *StemModel;
-  unsigned int                         AttrIndex;
+  unsigned_int32                         AttrIndex;
 
   StemModel = GetBranchModelByIndex(Model,GroupIndex)->GetStemModel();
 
@@ -1215,9 +1214,9 @@ void               P3DHLIPlantTemplate::FillCloneVAttrBuffersI
    }
  }
 
-unsigned int       P3DHLIPlantTemplate::GetIndexCount
-                                      (unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveType) const
+unsigned_int32       P3DHLIPlantTemplate::GetIndexCount
+                                      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveType) const
  {
   return(GetBranchModelByIndex(Model,GroupIndex)->
           GetStemModel()->GetIndexCount(PrimitiveType));
@@ -1225,10 +1224,10 @@ unsigned int       P3DHLIPlantTemplate::GetIndexCount
 
 void               P3DHLIPlantTemplate::FillIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   GetBranchModelByIndex(Model,GroupIndex)->GetStemModel()->
    FillIndexBuffer(IndexBuffer,PrimitiveType,ElementType,IndexBase);
@@ -1236,7 +1235,7 @@ void               P3DHLIPlantTemplate::FillIndexBuffer
 
 P3DHLIPlantInstance
                   *P3DHLIPlantTemplate::CreateInstance
-                                      (unsigned int        BaseSeed) const
+                                      (unsigned_int32        BaseSeed) const
  {
   if (BaseSeed == 0)
    {
@@ -1250,17 +1249,17 @@ P3DHLIPlantInstance
 
                    P3DHLIPlantInstance::P3DHLIPlantInstance
                                       (const P3DPlantModel*Model,
-                                       unsigned int        BaseSeed)
+                                       unsigned_int32        BaseSeed)
  {
   this->Model    = Model;
   this->BaseSeed = BaseSeed;
  }
 
-unsigned int       P3DHLIPlantInstance::GetBranchCount
-                                      (unsigned int        GroupIndex) const
+unsigned_int32       P3DHLIPlantInstance::GetBranchCount
+                                      (unsigned_int32        GroupIndex) const
  {
   const P3DBranchModel                *BranchModel;
-  unsigned int                         Counter;
+  unsigned_int32                         Counter;
 
   BranchModel = GetBranchModelByIndex(Model,GroupIndex);
 
@@ -1280,10 +1279,10 @@ unsigned int       P3DHLIPlantInstance::GetBranchCount
  }
 
 void               P3DHLIPlantInstance::GetBranchCountMulti
-                                      (unsigned int       *BranchCounts) const
+                                      (unsigned_int32       *BranchCounts) const
  {
-  unsigned int                         GroupIndex;
-  unsigned int                         GroupCount;
+  unsigned_int32                         GroupIndex;
+  unsigned_int32                         GroupCount;
 
   GroupCount = CalcInternalGroupCount(Model->GetPlantBase()) - 1;
 
@@ -1347,8 +1346,8 @@ void               P3DBranchingFactoryBoundCalc::GenerateBranch
                                        const P3DQuaternionf
                                                           *orientation)
  {
-  unsigned int                         SubBranchIndex;
-  unsigned int                         SubBranchCount;
+  unsigned_int32                         SubBranchIndex;
+  unsigned_int32                         SubBranchCount;
   P3DBranchModel                      *SubBranchModel;
   P3DBranchingAlg                     *BranchingAlg;
   P3DStemModel                        *StemModel;
@@ -1366,7 +1365,7 @@ void               P3DBranchingFactoryBoundCalc::GenerateBranch
 
     StemInstance->GetBoundBox(InstMin,InstMax);
 
-    for (unsigned int Axis = 0; Axis < 3; Axis++)
+    for (unsigned_int32 Axis = 0; Axis < 3; Axis++)
      {
       if      (InstMin[Axis] < Min[Axis])
        {
@@ -1405,7 +1404,7 @@ void               P3DBranchingFactoryBoundCalc::GenerateBranch
 static void        P3DHLICalcBBox     (float              *Min,
                                        float              *Max,
                                        const P3DPlantModel*Model,
-                                       unsigned int        BaseSeed)
+                                       unsigned_int32        BaseSeed)
  {
   P3DMathRNGSimple                     RNG(BaseSeed);
 
@@ -1433,7 +1432,7 @@ void               P3DHLIPlantInstance::FillCloneTransformBuffer
                                       (float              *OffsetBuffer,
                                        float              *OrientationBuffer,
                                        float              *ScaleBuffer,
-                                       unsigned int        GroupIndex) const
+                                       unsigned_int32        GroupIndex) const
  {
   const P3DBranchModel                *BranchModel;
 
@@ -1452,11 +1451,11 @@ void               P3DHLIPlantInstance::FillCloneTransformBuffer
   Helper.GenerateBranch(0.0f,0);
  }
 
-unsigned int       P3DHLIPlantInstance::GetVAttrCount
-                                      (unsigned int        GroupIndex,
-                                       unsigned int        Attr) const
+unsigned_int32       P3DHLIPlantInstance::GetVAttrCount
+                                      (unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const
  {
-  unsigned int                         BranchCount;
+  unsigned_int32                         BranchCount;
   const P3DBranchModel                *BranchModel;
 
   BranchCount = GetBranchCount(GroupIndex);
@@ -1467,8 +1466,8 @@ unsigned int       P3DHLIPlantInstance::GetVAttrCount
 
 void               P3DHLIPlantInstance::FillVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        GroupIndex,
+                                       unsigned_int32        Attr) const
  {
   const P3DBranchModel                *BranchModel;
 
@@ -1489,10 +1488,10 @@ void               P3DHLIPlantInstance::FillVAttrBuffer
   Helper.GenerateBranch(0.0f,0);
  }
 
-unsigned int       P3DHLIPlantInstance::GetVAttrCountI
-                                      (unsigned int        GroupIndex) const
+unsigned_int32       P3DHLIPlantInstance::GetVAttrCountI
+                                      (unsigned_int32        GroupIndex) const
  {
-  unsigned int                         BranchCount;
+  unsigned_int32                         BranchCount;
   const P3DBranchModel                *BranchModel;
 
   BranchCount = GetBranchCount(GroupIndex);
@@ -1503,7 +1502,7 @@ unsigned int       P3DHLIPlantInstance::GetVAttrCountI
 
 void               P3DHLIPlantInstance::FillVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        GroupIndex,
+                                       unsigned_int32        GroupIndex,
                                        const P3DHLIVAttrFormat
                                                           *VAttrFormat) const
  {
@@ -1529,7 +1528,7 @@ void               P3DHLIPlantInstance::FillVAttrBufferI
 void               P3DHLIPlantInstance::FillVAttrBuffersI
                                       (const P3DHLIVAttrBuffers
                                                           *VAttrBuffers,
-                                       unsigned int        GroupIndex) const
+                                       unsigned_int32        GroupIndex) const
  {
   const P3DBranchModel                *BranchModel;
 
@@ -1538,7 +1537,7 @@ void               P3DHLIPlantInstance::FillVAttrBuffersI
   P3DMathRNGSimple                     RNG(BaseSeed);
   void                                *DataBuffers[P3D_MAX_ATTRS];
 
-  for (unsigned int AttrIndex = 0; AttrIndex < P3D_MAX_ATTRS; AttrIndex++)
+  for (unsigned_int32 AttrIndex = 0; AttrIndex < P3D_MAX_ATTRS; AttrIndex++)
    {
     DataBuffers[AttrIndex] = VAttrBuffers->GetAttrBuffer(AttrIndex);
    }
@@ -1557,8 +1556,8 @@ void               P3DHLIPlantInstance::FillVAttrBuffersIMulti
                                       (P3DHLIVAttrBufferSet
                                                           *VAttrBufferSet) const
  {
-  unsigned int                         GroupIndex;
-  unsigned int                         GroupCount;
+  unsigned_int32                         GroupIndex;
+  unsigned_int32                         GroupCount;
 
   GroupCount = CalcInternalGroupCount(Model->GetPlantBase()) - 1;
 
@@ -1570,7 +1569,7 @@ void               P3DHLIPlantInstance::FillVAttrBuffersIMulti
 
     for (GroupIndex = 0; GroupIndex < GroupCount; GroupIndex++)
      {
-      for (unsigned int AttrIndex = 0; AttrIndex < P3D_MAX_ATTRS; AttrIndex++)
+      for (unsigned_int32 AttrIndex = 0; AttrIndex < P3D_MAX_ATTRS; AttrIndex++)
        {
         TempVAttrBufferSet[GroupIndex][AttrIndex] =
          VAttrBufferSet[GroupIndex][AttrIndex];

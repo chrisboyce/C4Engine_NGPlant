@@ -29,9 +29,6 @@
 
 ***************************************************************************/
 
-#include <stdlib.h>
-#include <math.h>
-#include <stdafx.h>
 
 #include <ngpcore/p3ddefs.h>
 
@@ -41,13 +38,13 @@
 
                    P3DTubeAxisLine::P3DTubeAxisLine
                                       (float               Length,
-                                       unsigned int        Resolution)
+                                       unsigned_int32        Resolution)
  {
   this->Length     = Length;
   this->Resolution = Resolution;
  }
 
-unsigned int       P3DTubeAxisLine::GetResolution
+unsigned_int32       P3DTubeAxisLine::GetResolution
                                       () const
  {
   return(Resolution);
@@ -76,14 +73,14 @@ void               P3DTubeAxisLine::GetOrientationAt
 
 void               P3DTubeAxisLine::GetOrientationAt
                                       (float              *Orientation,
-                                       unsigned int        SegIndex P3D_UNUSED_ATTR) const
+                                       unsigned_int32        SegIndex P3D_UNUSED_ATTR) const
  {
   P3DQuaternionf::MakeIdentity(Orientation);
  }
 
                    P3DTubeAxisSegLine::P3DTubeAxisSegLine
                                       (float               Length,
-                                       unsigned int        Resolution)
+                                       unsigned_int32        Resolution)
  {
   this->Length     = Length;
   this->Resolution = Resolution;
@@ -92,7 +89,7 @@ void               P3DTubeAxisLine::GetOrientationAt
    {
     SegOrientations = new float[4 * (Resolution - 1)];
 
-    for (unsigned int SegIndex = 0; SegIndex < (Resolution - 1); SegIndex++)
+    for (unsigned_int32 SegIndex = 0; SegIndex < (Resolution - 1); SegIndex++)
      {
       P3DQuaternionf::MakeIdentity(&(SegOrientations[4 * SegIndex]));
      }
@@ -110,7 +107,7 @@ void               P3DTubeAxisLine::GetOrientationAt
   delete[] SegOrientations;
  }
 
-unsigned int       P3DTubeAxisSegLine::GetResolution
+unsigned_int32       P3DTubeAxisSegLine::GetResolution
                                       () const
  {
   return(Resolution);
@@ -126,12 +123,12 @@ void               P3DTubeAxisSegLine::GetPointAt
                                       (float              *Pos,
                                        float               Offset) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   float                                SegLength;
 
   Offset = P3DMath::Clampf(0.0f,1.0f,Offset);
 
-  SegIndex = (unsigned int)(Offset * Resolution);
+  SegIndex = (unsigned_int32)(Offset * Resolution);
 
   if (SegIndex >= Resolution)
    {
@@ -157,8 +154,8 @@ void               P3DTubeAxisSegLine::GetOrientationAt
                                       (float              *Orientation,
                                        float               Offset) const
  {
-  unsigned int                         SegIndex;
-  unsigned int                         SegCount;
+  unsigned_int32                         SegIndex;
+  unsigned_int32                         SegCount;
   float                                SegFraction;
   P3DQuaternionf                       Next;
   P3DQuaternionf                       Prev;
@@ -170,7 +167,7 @@ void               P3DTubeAxisSegLine::GetOrientationAt
 
   P3DQuaternionf::MakeIdentity(Orientation);
 
-  SegIndex  = (unsigned int)(Offset * Resolution);
+  SegIndex  = (unsigned_int32)(Offset * Resolution);
 
   if (SegIndex >= Resolution)
    {
@@ -232,7 +229,7 @@ void               P3DTubeAxisSegLine::GetOrientationAt
 
 void               P3DTubeAxisSegLine::GetOrientationAt
                                       (float              *Orientation,
-                                       unsigned int        SegIndex) const
+                                       unsigned_int32        SegIndex) const
  {
   P3DQuaternionf::MakeIdentity(Orientation);
 
@@ -241,7 +238,7 @@ void               P3DTubeAxisSegLine::GetOrientationAt
    }
   else
    {
-    unsigned int   Index;
+    unsigned_int32   Index;
     P3DQuaternionf Temp1;
 
     for (Index = 0; Index < (SegIndex - 1); Index++)
@@ -282,7 +279,7 @@ void               P3DTubeAxisSegLine::GetOrientationAt
  }
 
 void               P3DTubeAxisSegLine::SetSegOrientation
-                                      (unsigned int        SegIndex,
+                                      (unsigned_int32        SegIndex,
                                        float              *Orientation)
  {
   if (SegIndex < (Resolution - 1))
@@ -299,12 +296,12 @@ void               P3DTubeAxisSegLine::SetSegOrientation
  }
 
                    P3DTubeProfileCircle::P3DTubeProfileCircle
-                                      (unsigned int        Resolution)
+                                      (unsigned_int32        Resolution)
  {
   this->Resolution = Resolution;
  }
 
-unsigned int       P3DTubeProfileCircle::GetResolution
+unsigned_int32       P3DTubeProfileCircle::GetResolution
                                       () const
  {
   return(Resolution);
@@ -313,7 +310,7 @@ unsigned int       P3DTubeProfileCircle::GetResolution
 void               P3DTubeProfileCircle::GetPoint
                                       (float              &x,
                                        float              &y,
-                                       unsigned int        t) const
+                                       unsigned_int32        t) const
  {
   float                              a;
 
@@ -325,7 +322,7 @@ void               P3DTubeProfileCircle::GetPoint
 void               P3DTubeProfileCircle::GetNormal
                                       (float              &x,
                                        float              &y,
-                                       unsigned int        t) const
+                                       unsigned_int32        t) const
  {
   GetPoint(x,y,t);
  }

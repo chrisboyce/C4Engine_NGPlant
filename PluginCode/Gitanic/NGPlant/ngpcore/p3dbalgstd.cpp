@@ -28,7 +28,7 @@
  SUCH DAMAGE.
 
 ***************************************************************************/
-#include <stdafx.h>
+
 #include <ngpcore/p3dmodel.h>
 #include <ngpcore/p3dbalgstd.h>
 
@@ -117,14 +117,14 @@ void               P3DBranchingAlgStd::SetDensityV
   this->DensityV = P3DMath::Clampf(0.0f,1.0f,DensityV);
  }
 
-unsigned int       P3DBranchingAlgStd::GetMinNumber
+unsigned_int32       P3DBranchingAlgStd::GetMinNumber
                                       () const
  {
   return MinNumber;
  }
 
 void               P3DBranchingAlgStd::SetMinNumber
-                                      (unsigned int                  MinNumber)
+                                      (unsigned_int32                  MinNumber)
  {
   this->MinNumber = MinNumber;
 
@@ -146,14 +146,14 @@ void               P3DBranchingAlgStd::SetMaxLimitEnabled
   MaxLimitEnabled = IsEnabled;
  }
 
-unsigned int       P3DBranchingAlgStd::GetMaxNumber
+unsigned_int32       P3DBranchingAlgStd::GetMaxNumber
                                       () const
  {
   return MaxNumber;
  }
 
 void               P3DBranchingAlgStd::SetMaxNumber
-                                      (unsigned int                  MaxNumber)
+                                      (unsigned_int32                  MaxNumber)
  {
   this->MaxNumber = MaxNumber;
 
@@ -163,14 +163,14 @@ void               P3DBranchingAlgStd::SetMaxNumber
    }
  }
 
-unsigned int       P3DBranchingAlgStd::GetMultiplicity
+unsigned_int32       P3DBranchingAlgStd::GetMultiplicity
                                       () const
  {
   return(Multiplicity);
  }
 
 void               P3DBranchingAlgStd::SetMultiplicity
-                                      (unsigned int                  Multiplicity)
+                                      (unsigned_int32                  Multiplicity)
  {
   if (Multiplicity > 0)
    {
@@ -273,7 +273,7 @@ void               P3DBranchingAlgStd::CreateBranches
                                        const P3DStemModelInstance   *Parent,
                                        P3DMathRNG                   *RNG)
  {
-  unsigned int                         BranchCount;
+  unsigned_int32                         BranchCount;
   float                                CurrOffset;
   float                                OffsetStep;
   float                                CurrRevAngle;
@@ -323,11 +323,11 @@ void               P3DBranchingAlgStd::CreateBranches
 
     MultRevAngleStep = (2.0f * P3DMATH_PI) / Multiplicity;
 
-    for (unsigned int i = 0; i < BranchCount; i++)
+    for (unsigned_int32 i = 0; i < BranchCount; i++)
      {
       float        BaseDeclination;
 
-      for (unsigned int MultIndex = 0; MultIndex < Multiplicity; MultIndex++)
+      for (unsigned_int32 MultIndex = 0; MultIndex < Multiplicity; MultIndex++)
        {
         BaseDeclination = DeclinationCurve.GetValue(CurrOffset);
 
@@ -399,7 +399,7 @@ void               P3DBranchingAlgStd::Load
  {
   char                                 StrValue[255 + 1];
   float                                FloatValue;
-  unsigned int                         UintValue;
+  unsigned_int32                         UintValue;
   bool                                 BoolValue;
 
   SourceStream->ReadFmtStringTagged("Density","f",&FloatValue);

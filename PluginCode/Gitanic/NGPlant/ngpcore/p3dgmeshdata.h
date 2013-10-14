@@ -40,45 +40,45 @@ class P3DGMeshData
  {
   public           :
 
-                   P3DGMeshData       (const unsigned int *VAttrCount,
-                                       unsigned int        PrimitiveCount,
-                                       unsigned int        IndexCount,
-                                       unsigned int        VAttrCountI,
-                                       unsigned int        IndexCountI);
+                   P3DGMeshData       (const unsigned_int32 *VAttrCount,
+                                       unsigned_int32        PrimitiveCount,
+                                       unsigned_int32        IndexCount,
+                                       unsigned_int32        VAttrCountI,
+                                       unsigned_int32        IndexCountI);
 
                   ~P3DGMeshData       ();
 
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
-  float           *GetVAttrBuffer     (unsigned int        Attr);
-  const float     *GetVAttrBuffer     (unsigned int        Attr) const;
-  unsigned int     GetPrimitiveCount  () const;
-  unsigned int    *GetPrimitiveBuffer ();
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
+  float           *GetVAttrBuffer     (unsigned_int32        Attr);
+  const float     *GetVAttrBuffer     (unsigned_int32        Attr) const;
+  unsigned_int32     GetPrimitiveCount  () const;
+  unsigned_int32    *GetPrimitiveBuffer ();
   const
-  unsigned int    *GetPrimitiveBuffer () const;
-  unsigned int     GetIndexCount      () const;
-  unsigned int    *GetIndexBuffer     (unsigned int        Attr) const;
+  unsigned_int32    *GetPrimitiveBuffer () const;
+  unsigned_int32     GetIndexCount      () const;
+  unsigned_int32    *GetIndexBuffer     (unsigned_int32        Attr) const;
 
-  unsigned int     GetVAttrCountI     () const;
-  float           *GetVAttrBufferI    (unsigned int        Attr);
-  const float     *GetVAttrBufferI    (unsigned int        Attr) const;
-  unsigned int     GetIndexCountI     () const;
-  unsigned int    *GetIndexBufferI    () const;
+  unsigned_int32     GetVAttrCountI     () const;
+  float           *GetVAttrBufferI    (unsigned_int32        Attr);
+  const float     *GetVAttrBufferI    (unsigned_int32        Attr) const;
+  unsigned_int32     GetIndexCountI     () const;
+  unsigned_int32    *GetIndexBufferI    () const;
 
   P3DGMeshData    *CreateCopy         () const;
 
   private          :
 
   float           *VAttrValues[P3D_GMESH_MAX_ATTRS];
-  unsigned int     VAttrValueCounts[P3D_GMESH_MAX_ATTRS];
-  unsigned int    *VAttrValueIndices[P3D_GMESH_MAX_ATTRS];
-  unsigned int     VAttrValueIndexCount;
-  unsigned int     PrimitiveCount;
-  unsigned int    *PrimitiveTypes;
+  unsigned_int32     VAttrValueCounts[P3D_GMESH_MAX_ATTRS];
+  unsigned_int32    *VAttrValueIndices[P3D_GMESH_MAX_ATTRS];
+  unsigned_int32     VAttrValueIndexCount;
+  unsigned_int32     PrimitiveCount;
+  unsigned_int32    *PrimitiveTypes;
 
-  unsigned int     VAttrCountI;
+  unsigned_int32     VAttrCountI;
   float           *VAttrBuffersI[P3D_GMESH_MAX_ATTRS];
-  unsigned int     IndexCountI;
-  unsigned int    *IndexBufferI;
+  unsigned_int32     IndexCountI;
+  unsigned_int32    *IndexBufferI;
  };
 
 #endif

@@ -48,34 +48,34 @@ class P3DStemModelTubeInstance : public P3DStemModelInstance
 
                    P3DStemModelTubeInstance
                                       (float               Length,
-                                       unsigned int        AxisResolution,
+                                       unsigned_int32        AxisResolution,
                                        float               ProfileScaleBase,
                                        const P3DMathNaturalCubicSpline
                                                           *ScaleProfileCurve,
-                                       unsigned int        ProfileResolution,
-                                       unsigned int        UMode,
+                                       unsigned_int32        ProfileResolution,
+                                       unsigned_int32        UMode,
                                        float               UScale,
-                                       unsigned int        VMode,
+                                       unsigned_int32        VMode,
                                        float               VScale,
                                        const P3DMatrix4x4f*Transform);
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
   virtual void     GetVAttrValue      (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     GetVAttrValueI     (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual float    GetLength          () const;
   virtual float    GetMinRadiusAt     (float               Offset) const;
@@ -88,10 +88,10 @@ class P3DStemModelTubeInstance : public P3DStemModelInstance
                                       (float              *Orientation,
                                        float               Offset) const;
 
-  void             SetSegOrientation  (unsigned int        SegIndex,
+  void             SetSegOrientation  (unsigned_int32        SegIndex,
                                        float              *Orientation);
 
-  const float     *GetSegOrientation  (unsigned int        SegIndex) const
+  const float     *GetSegOrientation  (unsigned_int32        SegIndex) const
    {
     return(Axis.GetSegOrientation(SegIndex));
    }
@@ -99,28 +99,28 @@ class P3DStemModelTubeInstance : public P3DStemModelInstance
   private          :
 
   void             CalcVertexPos      (float              *Pos,
-                                       unsigned int        VertexIndex) const;
+                                       unsigned_int32        VertexIndex) const;
 
 
   void             CalcVertexNormal   (float              *Normal,
-                                       unsigned int        VertexIndex) const;
+                                       unsigned_int32        VertexIndex) const;
 
   void             CalcVertexBiNormal (float              *BiNormal,
-                                       unsigned int        VertexIndex) const;
+                                       unsigned_int32        VertexIndex) const;
 
   void             CalcVertexTangent  (float              *Tangent,
-                                       unsigned int        VertexIndex) const;
+                                       unsigned_int32        VertexIndex) const;
 
   void             CalcVertexTexCoord (float              *TexCoord,
-                                       unsigned int        VertexIndex) const;
+                                       unsigned_int32        VertexIndex) const;
 
   P3DMatrix4x4f                        WorldTransform;
   P3DTubeAxisSegLine                   Axis;
   P3DTubeProfileCircle                 Profile;
   P3DTubeProfileScaleCustomCurve       ProfileScale;
-  unsigned int                         UMode;
+  unsigned_int32                         UMode;
   float                                UScale;
-  unsigned int                         VMode;
+  unsigned_int32                         VMode;
   float                                VScale;
  };
 
@@ -150,40 +150,40 @@ class P3DStemModelTube : public P3DStemModel
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
 
   virtual void     FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const;
+                                       unsigned_int32        Attr) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual void     FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const;
 
   virtual
-  unsigned int     GetIndexCount      (unsigned int        PrimitiveType) const;
+  unsigned_int32     GetIndexCount      (unsigned_int32        PrimitiveType) const;
 
   virtual void     FillIndexBuffer    (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const;
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const;
 
   virtual void     Save               (P3DOutputStringStream
                                                           *TargetStream) const;
@@ -210,12 +210,12 @@ class P3DStemModelTube : public P3DStemModel
   void             SetAxisVariation   (float               AxisVariation);
   float            GetAxisVariation   () const;
 
-  void             SetAxisResolution  (unsigned int        Resolution);
-  unsigned int     GetAxisResolution  () const;
+  void             SetAxisResolution  (unsigned_int32        Resolution);
+  unsigned_int32     GetAxisResolution  () const;
 
   void             SetProfileResolution
-                                      (unsigned int        Resolution);
-  unsigned int     GetProfileResolution
+                                      (unsigned_int32        Resolution);
+  unsigned_int32     GetProfileResolution
                                       () const;
 
   void             SetProfileScaleBase(float               Scale);
@@ -237,12 +237,12 @@ class P3DStemModelTube : public P3DStemModel
                   *GetPhototropismCurve
                                       () const;
 
-  void             SetTexCoordUMode   (unsigned int        Mode);
-  unsigned int     GetTexCoordUMode   () const;
+  void             SetTexCoordUMode   (unsigned_int32        Mode);
+  unsigned_int32     GetTexCoordUMode   () const;
   void             SetTexCoordUScale  (float               Scale);
   float            GetTexCoordUScale  () const;
-  void             SetTexCoordVMode   (unsigned int        Mode);
-  unsigned int     GetTexCoordVMode   () const;
+  void             SetTexCoordVMode   (unsigned_int32        Mode);
+  unsigned_int32     GetTexCoordVMode   () const;
   void             SetTexCoordVScale  (float               Scale);
   float            GetTexCoordVScale  () const;
 
@@ -270,18 +270,18 @@ class P3DStemModelTube : public P3DStemModel
   float                                LengthV;
   P3DMathNaturalCubicSpline            LengthOffsetInfluenceCurve;
   float                                AxisVariation;
-  unsigned int                         AxisResolution;
+  unsigned_int32                         AxisResolution;
   float                                ProfileScaleBase;
   P3DMathNaturalCubicSpline            ProfileScaleCurve;
-  unsigned int                         ProfileResolution;
+  unsigned_int32                         ProfileResolution;
 
   P3DMathNaturalCubicSpline            PhototropismCurve;
 
   /* Texture coordinate generation parameters */
 
-  unsigned int                         UMode;
+  unsigned_int32                         UMode;
   float                                UScale;
-  unsigned int                         VMode;
+  unsigned_int32                         VMode;
   float                                VScale;
  };
 

@@ -28,7 +28,7 @@
  SUCH DAMAGE.
 
 ***************************************************************************/
-#include <stdafx.h>
+
 #include <ngpcore/p3dmodel.h>
 #include <ngpcore/p3dbalgwings.h>
 

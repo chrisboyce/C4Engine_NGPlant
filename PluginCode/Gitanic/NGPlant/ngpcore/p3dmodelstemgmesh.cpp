@@ -42,22 +42,22 @@ class P3DStemModelGMeshInstance : public P3DStemModelInstance
                                        const P3DMatrix4x4f*Transform);
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
   virtual void     GetVAttrValue      (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     GetVAttrValueI     (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual void     GetBoundBox        (float              *Min,
                                        float              *Max) const;
@@ -100,8 +100,8 @@ class P3DStemModelGMeshInstance : public P3DStemModelInstance
    }
  }
 
-unsigned int       P3DStemModelGMeshInstance::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelGMeshInstance::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if      (Attr >= P3D_GMESH_MAX_ATTRS)
    {
@@ -119,8 +119,8 @@ unsigned int       P3DStemModelGMeshInstance::GetVAttrCount
 
 void               P3DStemModelGMeshInstance::GetVAttrValue
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if (Index >= GetVAttrCount(Attr))
    {
@@ -175,7 +175,7 @@ void               P3DStemModelGMeshInstance::GetVAttrValue
    }
  }
 
-unsigned int       P3DStemModelGMeshInstance::GetPrimitiveCount
+unsigned_int32       P3DStemModelGMeshInstance::GetPrimitiveCount
                                       () const
  {
   if (MeshData == 0)
@@ -188,8 +188,8 @@ unsigned int       P3DStemModelGMeshInstance::GetPrimitiveCount
    }
  }
 
-unsigned int       P3DStemModelGMeshInstance::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex) const
+unsigned_int32       P3DStemModelGMeshInstance::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex) const
  {
   if (PrimitiveIndex >= GetPrimitiveCount())
    {
@@ -199,7 +199,7 @@ unsigned int       P3DStemModelGMeshInstance::GetPrimitiveType
   return(*(MeshData->GetPrimitiveBuffer() + PrimitiveIndex));
  }
 
-unsigned int       P3DStemModelGMeshInstance::GetVAttrCountI
+unsigned_int32       P3DStemModelGMeshInstance::GetVAttrCountI
                                       () const
  {
   if (MeshData == 0)
@@ -214,8 +214,8 @@ unsigned int       P3DStemModelGMeshInstance::GetVAttrCountI
 
 void               P3DStemModelGMeshInstance::GetVAttrValueI
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if (Index >= GetVAttrCountI())
    {
@@ -300,7 +300,7 @@ void               P3DStemModelGMeshInstance::GetWorldTransform
                                       (float              *Transform) const
  {
   /*FIXME: need standard way to copy matrix into float array */
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     Transform[i] = WorldTransform.m[i];
    }
@@ -421,8 +421,8 @@ bool               P3DStemModelGMesh::IsCloneable
   return(true);
  }
 
-unsigned int       P3DStemModelGMesh::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelGMesh::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if      (Attr >= P3D_GMESH_MAX_ATTRS)
    {
@@ -440,13 +440,13 @@ unsigned int       P3DStemModelGMesh::GetVAttrCount
 
 void               P3DStemModelGMesh::FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        Attr) const
  {
-  unsigned int Count         = GetVAttrCount(Attr);
-  unsigned int AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
+  unsigned_int32 Count         = GetVAttrCount(Attr);
+  unsigned_int32 AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
   P3DStemModelGMeshInstance *Instance = new P3DStemModelGMeshInstance(MeshData,0);
 
-  for (unsigned int Index = 0; Index < Count; Index++)
+  for (unsigned_int32 Index = 0; Index < Count; Index++)
    {
     Instance->GetVAttrValue(&(((float*)VAttrBuffer)[Index * AttrItemCount]),Attr,Index);
    }
@@ -454,7 +454,7 @@ void               P3DStemModelGMesh::FillCloneVAttrBuffer
   delete Instance;
  }
 
-unsigned int       P3DStemModelGMesh::GetPrimitiveCount
+unsigned_int32       P3DStemModelGMesh::GetPrimitiveCount
                                       () const
  {
   if (MeshData == 0)
@@ -467,8 +467,8 @@ unsigned int       P3DStemModelGMesh::GetPrimitiveCount
    }
  }
 
-unsigned int       P3DStemModelGMesh::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex) const
+unsigned_int32       P3DStemModelGMesh::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex) const
  {
   if (PrimitiveIndex >= GetPrimitiveCount())
    {
@@ -482,9 +482,9 @@ unsigned int       P3DStemModelGMesh::GetPrimitiveType
 
 void               P3DStemModelGMesh::FillIndexArray
                                       (unsigned short     *Target,
-                                       const unsigned int *Source,
-                                       unsigned int        Count,
-                                       unsigned int        IndexBase)
+                                       const unsigned_int32 *Source,
+                                       unsigned_int32        Count,
+                                       unsigned_int32        IndexBase)
  {
   while (Count-- > 0)
    {
@@ -493,10 +493,10 @@ void               P3DStemModelGMesh::FillIndexArray
  }
 
 void               P3DStemModelGMesh::FillIndexArray
-                                      (unsigned int       *Target,
-                                       const unsigned int *Source,
-                                       unsigned int        Count,
-                                       unsigned int        IndexBase)
+                                      (unsigned_int32       *Target,
+                                       const unsigned_int32 *Source,
+                                       unsigned_int32        Count,
+                                       unsigned_int32        IndexBase)
  {
   while (Count-- > 0)
    {
@@ -506,9 +506,9 @@ void               P3DStemModelGMesh::FillIndexArray
 
 void               P3DStemModelGMesh::FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   if (MeshData == 0)
    {
@@ -522,7 +522,7 @@ void               P3DStemModelGMesh::FillVAttrIndexBuffer
 
   if (ElementType == P3D_UNSIGNED_INT)
    {
-    FillIndexArray((unsigned int*)IndexBuffer,
+    FillIndexArray((unsigned_int32*)IndexBuffer,
                    MeshData->GetIndexBuffer(Attr),
                    MeshData->GetIndexCount(),
                    IndexBase);
@@ -537,7 +537,7 @@ void               P3DStemModelGMesh::FillVAttrIndexBuffer
    }
  }
 
-unsigned int       P3DStemModelGMesh::GetVAttrCountI
+unsigned_int32       P3DStemModelGMesh::GetVAttrCountI
                                       () const
  {
   if (MeshData == 0)
@@ -552,11 +552,11 @@ unsigned int       P3DStemModelGMesh::GetVAttrCountI
 
 void               P3DStemModelGMesh::FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const
  {
-  unsigned int Count         = GetVAttrCountI();
-  unsigned int AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
+  unsigned_int32 Count         = GetVAttrCountI();
+  unsigned_int32 AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
   P3DStemModelGMeshInstance *Instance = new P3DStemModelGMeshInstance(MeshData,0);
 
   if (Stride == 0)
@@ -564,7 +564,7 @@ void               P3DStemModelGMesh::FillCloneVAttrBufferI
     Stride = AttrItemCount * sizeof(float);
    }
 
-  for (unsigned int Index = 0; Index < Count; Index++)
+  for (unsigned_int32 Index = 0; Index < Count; Index++)
    {
     Instance->GetVAttrValueI((float*)&(((char*)VAttrBuffer)[Index * Stride]),Attr,Index);
    }
@@ -572,8 +572,8 @@ void               P3DStemModelGMesh::FillCloneVAttrBufferI
   delete Instance;
  }
 
-unsigned int       P3DStemModelGMesh::GetIndexCount
-                                      (unsigned int        PrimitiveType) const
+unsigned_int32       P3DStemModelGMesh::GetIndexCount
+                                      (unsigned_int32        PrimitiveType) const
  {
   if (PrimitiveType != P3D_TRIANGLE_LIST)
    {
@@ -592,9 +592,9 @@ unsigned int       P3DStemModelGMesh::GetIndexCount
 
 void               P3DStemModelGMesh::FillIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   if (PrimitiveType != P3D_TRIANGLE_LIST)
    {
@@ -608,7 +608,7 @@ void               P3DStemModelGMesh::FillIndexBuffer
 
   if (ElementType == P3D_UNSIGNED_INT)
    {
-    FillIndexArray((unsigned int*)IndexBuffer,
+    FillIndexArray((unsigned_int32*)IndexBuffer,
                    MeshData->GetIndexBufferI(),
                    MeshData->GetIndexCountI(),
                    IndexBase);
@@ -625,11 +625,11 @@ void               P3DStemModelGMesh::FillIndexBuffer
 static void        SaveVAttr          (P3DOutputStringFmtStream
                                                           *FmtStream,
                                        const P3DGMeshData *MeshData,
-                                       unsigned int        Attr,
+                                       unsigned_int32        Attr,
                                        const char         *AttrName)
  {
-  unsigned int                         AttrIndex;
-  unsigned int                         AttrCount;
+  unsigned_int32                         AttrIndex;
+  unsigned_int32                         AttrCount;
   const float                         *Buffer;
 
   Buffer    = MeshData->GetVAttrBuffer(Attr);
@@ -658,11 +658,11 @@ static void        SaveVAttr          (P3DOutputStringFmtStream
 static void        LoadVAttr          (P3DInputStringFmtStream
                                                           *FmtStream,
                                        P3DGMeshData       *MeshData,
-                                       unsigned int        Attr,
+                                       unsigned_int32        Attr,
                                        const char         *AttrName)
  {
-  unsigned int                         AttrIndex;
-  unsigned int                         AttrCount;
+  unsigned_int32                         AttrIndex;
+  unsigned_int32                         AttrCount;
   float                               *Buffer;
 
   Buffer    = MeshData->GetVAttrBuffer(Attr);
@@ -691,11 +691,11 @@ static void        LoadVAttr          (P3DInputStringFmtStream
 static void        SaveVAttrI         (P3DOutputStringFmtStream
                                                           *FmtStream,
                                        const P3DGMeshData *MeshData,
-                                       unsigned int        Attr,
+                                       unsigned_int32        Attr,
                                        const char         *AttrName)
  {
-  unsigned int                         AttrIndex;
-  unsigned int                         AttrCount;
+  unsigned_int32                         AttrIndex;
+  unsigned_int32                         AttrCount;
   const float                         *Buffer;
 
   Buffer    = MeshData->GetVAttrBufferI(Attr);
@@ -724,11 +724,11 @@ static void        SaveVAttrI         (P3DOutputStringFmtStream
 static void        LoadVAttrI         (P3DInputStringFmtStream
                                                           *FmtStream,
                                        P3DGMeshData       *MeshData,
-                                       unsigned int        Attr,
+                                       unsigned_int32        Attr,
                                        const char         *AttrName)
  {
-  unsigned int                         AttrIndex;
-  unsigned int                         AttrCount;
+  unsigned_int32                         AttrIndex;
+  unsigned_int32                         AttrCount;
   float                               *Buffer;
 
   Buffer    = MeshData->GetVAttrBufferI(Attr);
@@ -759,10 +759,10 @@ void               P3DStemModelGMesh::Save
                                                           *TargetStream) const
  {
   P3DOutputStringFmtStream             FmtStream(TargetStream);
-  unsigned int                         PrimitiveIndex;
-  unsigned int                         PrimitiveCount;
-  const unsigned int                  *PrimitiveBuffer;
-  const unsigned int                  *IndexBuffer[P3D_GMESH_MAX_ATTRS];
+  unsigned_int32                         PrimitiveIndex;
+  unsigned_int32                         PrimitiveCount;
+  const unsigned_int32                  *PrimitiveBuffer;
+  const unsigned_int32                  *IndexBuffer[P3D_GMESH_MAX_ATTRS];
 
   FmtStream.WriteString("ss","StemModel","GMesh");
 
@@ -866,15 +866,15 @@ void               P3DStemModelGMesh::Load
                                                           *Version P3D_UNUSED_ATTR)
  {
   P3DGMeshData                        *NewMeshData;
-  unsigned int                         VAttrCounts[P3D_GMESH_MAX_ATTRS];
-  unsigned int                         PrimitiveIndex;
-  unsigned int                         PrimitiveCount;
-  unsigned int                         IndexCount;
-  unsigned int                         VAttrCountI;
-  unsigned int                         IndexCountI;
-  unsigned int                         IndexCounter;
-  unsigned int                        *PrimitiveBuffer;
-  unsigned int                        *IndexBuffer[P3D_GMESH_MAX_ATTRS];
+  unsigned_int32                         VAttrCounts[P3D_GMESH_MAX_ATTRS];
+  unsigned_int32                         PrimitiveIndex;
+  unsigned_int32                         PrimitiveCount;
+  unsigned_int32                         IndexCount;
+  unsigned_int32                         VAttrCountI;
+  unsigned_int32                         IndexCountI;
+  unsigned_int32                         IndexCounter;
+  unsigned_int32                        *PrimitiveBuffer;
+  unsigned_int32                        *IndexBuffer[P3D_GMESH_MAX_ATTRS];
 
   NewMeshData = 0;
 

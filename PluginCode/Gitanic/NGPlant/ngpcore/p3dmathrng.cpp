@@ -36,7 +36,7 @@
 #define P3DMathRNGSimpleMax (0xFFFFFFFFU)
 
                    P3DMathRNGSimple::P3DMathRNGSimple
-                                      (unsigned int        Seed)
+                                      (unsigned_int32        Seed)
  {
   this->Seed = Seed;
 
@@ -44,7 +44,7 @@
  }
 
 void               P3DMathRNGSimple::SetSeed
-                                      (unsigned int        Seed)
+                                      (unsigned_int32        Seed)
  {
   this->Seed = Seed;
 
@@ -65,7 +65,7 @@ float              P3DMathRNGSimple::UniformFloat
   return(Min + Rand() / (P3DMathRNGSimpleMax + 1.0) * (Max - Min));
  }
 
-unsigned int       P3DMathRNGSimple::Rand
+unsigned_int32       P3DMathRNGSimple::Rand
                                       ()
  {
   Seed = (1664525U * Seed + 1013904223U) & 0xFFFFFFFFU;

@@ -44,8 +44,8 @@
 
 typedef struct
  {
-  unsigned int     Major;
-  unsigned int     Minor;
+  unsigned_int32     Major;
+  unsigned_int32     Minor;
  } P3DFileVersion;
 
 typedef struct
@@ -113,8 +113,8 @@ class P3D_DLL_ENTRY P3DMaterialDef
                                        float               G,
                                        float               B);
 
-  const char      *GetTexName         (unsigned int        Layer) const;
-  void             SetTexName         (unsigned int        Layer,
+  const char      *GetTexName         (unsigned_int32        Layer) const;
+  void             SetTexName         (unsigned_int32        Layer,
                                        const char         *TexName);
 
   bool             IsDoubleSided      () const;
@@ -124,8 +124,8 @@ class P3D_DLL_ENTRY P3DMaterialDef
   void             SetTransparent     (bool                Transparent);
 
   bool             IsBillboard        () const;
-  unsigned int     GetBillboardMode   () const;
-  void             SetBillboardMode   (unsigned int        Mode);
+  unsigned_int32     GetBillboardMode   () const;
+  void             SetBillboardMode   (unsigned_int32        Mode);
 
   bool             IsAlphaCtrlEnabled () const;
   void             SetAlphaCtrlState  (bool                Enable);
@@ -145,7 +145,7 @@ class P3D_DLL_ENTRY P3DMaterialDef
   char            *TexNames[P3D_MAX_TEX_LAYERS];
   bool             DoubleSided;
   bool             Transparent;
-  unsigned int     BillboardMode;
+  unsigned_int32     BillboardMode;
 
   bool             AlphaCtrlEnabled;
   float            AlphaFadeIn;
@@ -199,27 +199,27 @@ class P3DStemModelInstance
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const = 0;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const = 0;
   /* Value must a pointer to attribute buffer. Size of buffer: */
   /* 2 - for texture coordinates                               */
   /* 3 - for vertex and normal                                 */
   virtual void     GetVAttrValue      (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const = 0;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const = 0;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const = 0;
+  unsigned_int32     GetPrimitiveCount  () const = 0;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const = 0;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const = 0;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const = 0;
+  unsigned_int32     GetVAttrCountI     () const = 0;
 
   virtual void     GetVAttrValueI     (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const = 0;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const = 0;
 
   /* Bound-box information */
 
@@ -270,40 +270,40 @@ class P3DStemModel
   /* Per-attribute information */
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const = 0;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const = 0;
 
   virtual void     FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const = 0;
+                                       unsigned_int32        Attr) const = 0;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const = 0;
+  unsigned_int32     GetPrimitiveCount  () const = 0;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const = 0;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const = 0;
 
   virtual void     FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const = 0;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const = 0;
 
   /* Per-index information */
 
   virtual
-  unsigned int     GetVAttrCountI     () const = 0;
+  unsigned_int32     GetVAttrCountI     () const = 0;
 
   virtual void     FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const = 0;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const = 0;
 
   virtual
-  unsigned int     GetIndexCount      (unsigned int        PrimitiveType) const = 0;
+  unsigned_int32     GetIndexCount      (unsigned_int32        PrimitiveType) const = 0;
 
   virtual void     FillIndexBuffer    (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase = 0) const = 0;
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase = 0) const = 0;
 
   virtual void     Save               (P3DOutputStringStream
                                                           *TargetStream) const = 0;
@@ -379,16 +379,16 @@ class P3DBranchModel
   const
   P3DVisRangeState*GetVisRangeState   () const;
 
-  unsigned int     GetSubBranchCount  () const;
+  unsigned_int32     GetSubBranchCount  () const;
   const
-  P3DBranchModel  *GetSubBranchModel  (unsigned int        SubBranchIndex) const;
-  P3DBranchModel  *GetSubBranchModel  (unsigned int        SubBranchIndex);
+  P3DBranchModel  *GetSubBranchModel  (unsigned_int32        SubBranchIndex) const;
+  P3DBranchModel  *GetSubBranchModel  (unsigned_int32        SubBranchIndex);
 
   void             AppendSubBranch    (P3DBranchModel     *SubBranchModel);
   void             InsertSubBranch    (P3DBranchModel     *SubBranchModel,
-                                       unsigned int        SubBranchIndex);
-  void             RemoveSubBranch    (unsigned int        SubBranchIndex);
-  P3DBranchModel  *DetachSubBranch    (unsigned int        SubBranchIndex);
+                                       unsigned_int32        SubBranchIndex);
+  void             RemoveSubBranch    (unsigned_int32        SubBranchIndex);
+  P3DBranchModel  *DetachSubBranch    (unsigned_int32        SubBranchIndex);
 
   void             Save               (P3DOutputStringStream
                                                           *TargetStream,
@@ -410,7 +410,7 @@ class P3DBranchModel
   P3DMaterialInstance                 *MaterialInstance;
   P3DVisRangeState                     VisRangeState;
   P3DBranchModel                      *SubBranches[P3DBranchModelSubBranchMaxCount];
-  unsigned int                         SubBranchCount;
+  unsigned_int32                         SubBranchCount;
  };
 
 #define P3D_MODEL_FLAG_NO_RANDOMNESS (0x1)
@@ -426,11 +426,11 @@ class P3D_DLL_ENTRY P3DPlantModel
   const
   P3DBranchModel  *GetPlantBase       () const;
 
-  unsigned int     GetBaseSeed        () const;
-  void             SetBaseSeed        (unsigned int        BaseSeed);
+  unsigned_int32     GetBaseSeed        () const;
+  void             SetBaseSeed        (unsigned_int32        BaseSeed);
 
-  unsigned int     GetFlags           () const;
-  void             SetFlags           (unsigned int        Flags);
+  unsigned_int32     GetFlags           () const;
+  void             SetFlags           (unsigned_int32        Flags);
 
   void             Save               (P3DOutputStringStream
                                                           *TargetStream,
@@ -443,12 +443,12 @@ class P3D_DLL_ENTRY P3DPlantModel
   static const P3DBranchModel
                   *GetBranchModelByIndex
                                       (const P3DPlantModel*Model,
-                                       unsigned int        Index);
+                                       unsigned_int32        Index);
 
   static P3DBranchModel
                   *GetBranchModelByIndex
                                       (P3DPlantModel      *Model,
-                                       unsigned int        Index);
+                                       unsigned_int32        Index);
 
   static P3DBranchModel
                   *GetBranchModelByName
@@ -462,8 +462,8 @@ class P3D_DLL_ENTRY P3DPlantModel
   private          :
 
   P3DBranchModel                      *PlantBase;
-  unsigned int                         BaseSeed;
-  unsigned int                         Flags;
+  unsigned_int32                         BaseSeed;
+  unsigned_int32                         Flags;
  };
 
 /*FIXME: not best header for next prototype (implemented in p3dmodelstemtube.cpp) */

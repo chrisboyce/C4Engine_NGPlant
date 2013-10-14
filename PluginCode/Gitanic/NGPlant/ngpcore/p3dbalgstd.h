@@ -51,16 +51,16 @@ class P3DBranchingAlgStd : public P3DBranchingAlg
   float            GetDensityV        () const;
   void             SetDensityV        (float                         DensityV);
 
-  unsigned int     GetMinNumber       () const;
-  void             SetMinNumber       (unsigned int                  MinNumber);
+  unsigned_int32     GetMinNumber       () const;
+  void             SetMinNumber       (unsigned_int32                  MinNumber);
 
   bool             IsMaxLimitEnabled  () const;
   void             SetMaxLimitEnabled (bool                          IsEnabled);
-  unsigned int     GetMaxNumber       () const;
-  void             SetMaxNumber       (unsigned int                  MaxNumber);
+  unsigned_int32     GetMaxNumber       () const;
+  void             SetMaxNumber       (unsigned_int32                  MaxNumber);
 
-  unsigned int     GetMultiplicity    () const;
-  void             SetMultiplicity    (unsigned int                  Multiplicity);
+  unsigned_int32     GetMultiplicity    () const;
+  void             SetMultiplicity    (unsigned_int32                  Multiplicity);
 
   float            GetRevAngle        () const;
   void             SetRevAngle        (float                         RevAngle);
@@ -106,10 +106,10 @@ class P3DBranchingAlgStd : public P3DBranchingAlg
 
   float                                Density; /* branches per meter */
   float                                DensityV;
-  unsigned int                         MinNumber; /* min. number of branches */
+  unsigned_int32                         MinNumber; /* min. number of branches */
   bool                                 MaxLimitEnabled; /* if false, MaxNumber is not used */
-  unsigned int                         MaxNumber; /* max. number of branches */
-  unsigned int                         Multiplicity;
+  unsigned_int32                         MaxNumber; /* max. number of branches */
+  unsigned_int32                         Multiplicity;
   float                                RevAngle; /* rotation around stem step */
   float                                RevAngleV;
 

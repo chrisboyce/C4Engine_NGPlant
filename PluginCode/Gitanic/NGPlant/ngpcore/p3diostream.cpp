@@ -29,12 +29,6 @@
 
 ***************************************************************************/
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <locale.h>
-#include <stdafx.h>
 #include <ngpcore/p3dcompat.h> /* for snprintf definition in MSVC environment */
 #include <ngpcore/p3dexcept.h>
 #include <ngpcore/p3diostream.h>
@@ -135,8 +129,8 @@ void               P3DInputStringFmtStream::EnableEscapeChars
 
 typedef struct
  {
-  unsigned int     Start;
-  unsigned int     Length;
+  unsigned_int32     Start;
+  unsigned_int32     Length;
  } P3DWordInfo;
 
 static bool        GetWordInfoNext    (P3DWordInfo        *WordInfo,
@@ -178,10 +172,10 @@ static bool        GetWordInfoFirst   (P3DWordInfo        *WordInfo,
 
 void               P3DInputStringFmtStream::ScanStringSafe
                                       (char               *DestBuffer,
-                                       unsigned int        DestSize,
+                                       unsigned_int32        DestSize,
                                        const char         *SrcBuffer,
-                                       unsigned int        SrcOffset,
-                                       unsigned int        SrcLength)
+                                       unsigned_int32        SrcOffset,
+                                       unsigned_int32        SrcLength)
  {
   if (!HandleEscapedStrings  ||
       SrcOffset >= SrcLength ||
@@ -198,8 +192,8 @@ void               P3DInputStringFmtStream::ScanStringSafe
     return;
    }
 
-  unsigned int SrcEnd    = SrcOffset + SrcLength;
-  unsigned int DestOffset = 0;
+  unsigned_int32 SrcEnd    = SrcOffset + SrcLength;
+  unsigned_int32 DestOffset = 0;
 
   for (SrcOffset = SrcOffset + 1; // skip leading quote
        SrcOffset < SrcEnd && SrcBuffer[SrcOffset] != '\"';
@@ -248,8 +242,8 @@ void               P3DInputStringFmtStream::ReadFmtStringTagged
   char                                 Buffer[1024];
   char                                 ValueBuffer[256];
   P3DWordInfo                          WordInfo;
-  unsigned int                         FieldIndex;
-  unsigned int                         FieldCount;
+  unsigned_int32                         FieldIndex;
+  unsigned_int32                         FieldCount;
   va_list                              FieldValues;
   P3DLocaleInfo                        LocaleInfo;
 
@@ -290,10 +284,10 @@ void               P3DInputStringFmtStream::ReadFmtStringTagged
         case ('s') :
          {
           char         *Value;
-          unsigned int  Size;
+          unsigned_int32  Size;
 
           Value = va_arg(FieldValues,char*);
-          Size  = va_arg(FieldValues,unsigned int);
+          Size  = va_arg(FieldValues,unsigned_int32);
 
           ScanStringSafe(Value,Size,Buffer,WordInfo.Start,WordInfo.Length);
          } break;
@@ -302,15 +296,15 @@ void               P3DInputStringFmtStream::ReadFmtStringTagged
          {
           if (WordInfo.Length >= sizeof(ValueBuffer))
            {
-            throw P3DExceptionGeneric("unsigned int value is too large");
+            throw P3DExceptionGeneric("unsigned_int32 value is too large");
            }
 
           memcpy(ValueBuffer,&Buffer[WordInfo.Start],WordInfo.Length);
           ValueBuffer[WordInfo.Length] = '\0';
 
-          if (sscanf(ValueBuffer,"%u",va_arg(FieldValues,unsigned int*)) < 1)
+          if (sscanf(ValueBuffer,"%u",va_arg(FieldValues,unsigned_int32*)) < 1)
            {
-            throw P3DExceptionGeneric("invalid unsigned int value");
+            throw P3DExceptionGeneric("invalid unsigned_int32 value");
            }
          } break;
 
@@ -383,7 +377,7 @@ void               P3DInputStringFmtStream::ReadFmtStringTagged
 
 void               P3DInputStringFmtStream::ReadDataString
                                       (char               *Buffer,
-                                       unsigned int        BufferSize)
+                                       unsigned_int32        BufferSize)
  {
   /*FIXME: skip empty lines here */
   SourceStream->ReadString(Buffer,BufferSize);
@@ -469,8 +463,8 @@ void               P3DOutputStringFmtStream::WriteString
                                       (const char         *Format,
                                        ...)
  {
-  unsigned int                         FieldCount;
-  unsigned int                         FieldIndex;
+  unsigned_int32                         FieldCount;
+  unsigned_int32                         FieldIndex;
   char                                 FieldType;
   va_list                              FieldValues;
   char                                 Buffer[255 + 1];
@@ -504,9 +498,9 @@ void               P3DOutputStringFmtStream::WriteString
 
         case ('u') :
          {
-          if (snprintf(Buffer,sizeof(Buffer),"%u",va_arg(FieldValues,unsigned int)) >= (int)(sizeof(Buffer)))
+          if (snprintf(Buffer,sizeof(Buffer),"%u",va_arg(FieldValues,unsigned_int32)) >= (int)(sizeof(Buffer)))
            {
-            throw P3DExceptionGeneric("unsigned int value string representation is too large");
+            throw P3DExceptionGeneric("unsigned_int32 value string representation is too large");
            }
 
           Target->WriteString(Buffer);
@@ -598,11 +592,11 @@ void               P3DInputStringStreamFile::Close
 
 void               P3DInputStringStreamFile::ReadString
                                       (char               *Buffer,
-                                       unsigned int        BufferSize)
+                                       unsigned_int32        BufferSize)
  {
   bool                                 Ready;
   int                                  CurrChar;
-  unsigned int                         Index;
+  unsigned_int32                         Index;
 
   /*FIXME: slow and bruteforced, must be rewritten ;) */
 

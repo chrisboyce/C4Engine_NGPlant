@@ -74,7 +74,7 @@ void               P3DMathNaturalCubicSpline::CopyFrom
  {
   cp_count = src.cp_count;
 
-  for (unsigned int i = 0; i < cp_count; i++)
+  for (unsigned_int32 i = 0; i < cp_count; i++)
    {
     cp_x[i]  = src.cp_x[i];
     cp_y[i]  = src.cp_y[i];
@@ -82,20 +82,20 @@ void               P3DMathNaturalCubicSpline::CopyFrom
    }
  }
 
-unsigned int       P3DMathNaturalCubicSpline::GetCPCount
+unsigned_int32       P3DMathNaturalCubicSpline::GetCPCount
                                                 () const
  {
   return(cp_count);
  }
 
 float              P3DMathNaturalCubicSpline::GetCPX
-                                                (unsigned int        cp) const
+                                                (unsigned_int32        cp) const
  {
   return(cp_x[cp]);
  }
 
 float              P3DMathNaturalCubicSpline::GetCPY
-                                                (unsigned int        cp) const
+                                                (unsigned_int32        cp) const
  {
   return(cp_y[cp]);
  }
@@ -117,7 +117,7 @@ float              P3DMathNaturalCubicSpline::GetValue
    }
   else
    {
-    unsigned int base;
+    unsigned_int32 base;
 
     base = 0;
 
@@ -159,7 +159,7 @@ float              P3DMathNaturalCubicSpline::GetTangent
    }
   else
    {
-    unsigned int base;
+    unsigned_int32 base;
 
     base = 0;
 
@@ -192,7 +192,7 @@ float              P3DMathNaturalCubicSpline::GetTangent
 bool               P3DMathNaturalCubicSpline::IsConstant
                                                 () const
  {
-  for (unsigned int i = 1; i < cp_count; i++)
+  for (unsigned_int32 i = 1; i < cp_count; i++)
    {
     if (!P3DMathSpAlmostEqual(cp_y[i],cp_y[0]))
      {
@@ -214,7 +214,7 @@ void               P3DMathNaturalCubicSpline::RecalcY2
   cp_y2[0] = 0.0f;
   u[0]     = 0.0f;
 
-  for (unsigned int i = 1; i < (cp_count - 1); i++)
+  for (unsigned_int32 i = 1; i < (cp_count - 1); i++)
    {
     sig = (cp_x[i] - cp_x[i - 1]) / (cp_x[i + 1] - cp_x[i - 1]);
     p   = sig * cp_y2[i - 1] + 2.0f;
@@ -240,7 +240,7 @@ void               P3DMathNaturalCubicSpline::AddCP
                                                 (float               x,
                                                  float               y)
  {
-  unsigned int                                   cp;
+  unsigned_int32                                   cp;
 
   if (cp_count < P3DMATH_NATURAL_CUBIC_SPLINE_CP_MAX_COUNT)
    {
@@ -276,11 +276,11 @@ void               P3DMathNaturalCubicSpline::AddCP
  }
 
 void               P3DMathNaturalCubicSpline::DelCP
-                                                (unsigned int        cp)
+                                                (unsigned_int32        cp)
  {
   if (cp < cp_count)
    {
-    for (unsigned int i = (cp + 1); i < cp_count; i++)
+    for (unsigned_int32 i = (cp + 1); i < cp_count; i++)
      {
       cp_x[i - 1] = cp_x[i]; cp_y[i - 1] = cp_y[i];
      }
@@ -297,7 +297,7 @@ void               P3DMathNaturalCubicSpline::DelCP
 void               P3DMathNaturalCubicSpline::UpdateCP
                                                 (float               x,
                                                  float               y,
-                                                 unsigned int        cp)
+                                                 unsigned_int32        cp)
  {
   if (cp < cp_count)
    {

@@ -32,7 +32,7 @@
 #ifndef __P3DIOSTREAM_H__
 #define __P3DIOSTREAM_H__
 
-#include <stdio.h>
+#include <C4Defines.h>
 
 #include <ngpcore/p3ddefs.h>
 #include <ngpcore/p3dexcept.h>
@@ -54,7 +54,7 @@ class P3DInputStringStream
 
   virtual
   void             ReadString         (char               *Buffer,
-                                       unsigned int        BufferSize) = 0;
+                                       unsigned_int32        BufferSize) = 0;
 
   virtual bool     Eof                () const = 0;
  };
@@ -74,7 +74,7 @@ class P3D_DLL_ENTRY P3DInputStringStreamFile : public P3DInputStringStream
 
   virtual
   void             ReadString         (char               *Buffer,
-                                       unsigned int        BufferSize);
+                                       unsigned_int32        BufferSize);
 
   virtual bool     Eof                () const;
 
@@ -100,13 +100,13 @@ class P3DInputStringFmtStream
   private          :
 
   void             ReadDataString     (char               *Buffer,
-                                       unsigned int        BufferSize);
+                                       unsigned_int32        BufferSize);
 
   void             ScanStringSafe     (char               *DestBuffer,
                                        unsigned            DestSize,
                                        const char         *SrcBuffer,
-                                       unsigned int        SrcOffset,
-                                       unsigned int        SrcLength);
+                                       unsigned_int32        SrcOffset,
+                                       unsigned_int32        SrcLength);
 
   P3DInputStringStream                *SourceStream;
   bool                                 HandleEscapedStrings;
@@ -140,7 +140,7 @@ class P3DOutputStringFmtStream
   /*      describes type of element                                  */
   /*      Supported types:                                           */
   /*      s - string                                                 */
-  /*      u - unsigned int                                           */
+  /*      u - unsigned_int32                                           */
   /*      f - float                                                  */
   /*      b - bool                                                   */
 

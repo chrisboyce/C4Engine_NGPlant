@@ -135,7 +135,7 @@ void               P3DVisRangeState::Load
   G = 1.0f;
   B = 1.0f;
 
-  for (unsigned int Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
+  for (unsigned_int32 Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
    {
     TexNames[Layer] = NULL;
    }
@@ -153,7 +153,7 @@ void               P3DVisRangeState::Load
                                       (const P3DMaterialDef
                                                           &Source)
  {
-  for (unsigned int Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
+  for (unsigned_int32 Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
    {
     TexNames[Layer] = NULL;
    }
@@ -171,7 +171,7 @@ void               P3DMaterialDef::operator =
                    P3DMaterialDef::~P3DMaterialDef
                                       ()
  {
-  for (unsigned int Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
+  for (unsigned_int32 Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
    {
     if (TexNames[Layer] != NULL)
      {
@@ -196,7 +196,7 @@ void               P3DMaterialDef::CopyFrom
     AlphaFadeIn   = Source->AlphaFadeIn;
     AlphaFadeOut  = Source->AlphaFadeOut;
 
-    for (unsigned int Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
+    for (unsigned_int32 Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
      {
       if (TexNames[Layer] != NULL)
        {
@@ -235,7 +235,7 @@ void               P3DMaterialDef::Save
   FmtStream.WriteString("ss","Material","Simple");
   FmtStream.WriteString("sfff","BaseColor",R,G,B);
 
-  for (unsigned int Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
+  for (unsigned_int32 Layer = 0; Layer < P3D_MAX_TEX_LAYERS; Layer++)
    {
     if (TexNames[Layer] != NULL)
      {
@@ -281,7 +281,7 @@ void               P3DMaterialDef::Load
  {
   float                                R1,G1,B1;
   char                                 StrValue[255 + 1];
-  unsigned int                         Layer;
+  unsigned_int32                         Layer;
 
   SourceStream->ReadFmtStringTagged("BaseColor","fff",&R1,&G1,&B1);
 
@@ -392,7 +392,7 @@ void               P3DMaterialDef::SetColor
  }
 
 const char        *P3DMaterialDef::GetTexName
-                                      (unsigned int        Layer) const
+                                      (unsigned_int32        Layer) const
  {
   if (Layer < P3D_MAX_TEX_LAYERS)
    {
@@ -405,7 +405,7 @@ const char        *P3DMaterialDef::GetTexName
  }
 
 void               P3DMaterialDef::SetTexName
-                                      (unsigned int        Layer,
+                                      (unsigned_int32        Layer,
                                        const char         *TexName)
  {
   if (Layer < P3D_MAX_TEX_LAYERS)
@@ -463,14 +463,14 @@ bool               P3DMaterialDef::IsBillboard
   return((BillboardMode != P3D_BILLBOARD_MODE_NONE) ? true : false);
  }
 
-unsigned int       P3DMaterialDef::GetBillboardMode
+unsigned_int32       P3DMaterialDef::GetBillboardMode
                                       () const
  {
   return(BillboardMode);
  }
 
 void               P3DMaterialDef::SetBillboardMode
-                                      (unsigned int        Mode)
+                                      (unsigned_int32        Mode)
  {
   this->BillboardMode = Mode;
  }
@@ -515,7 +515,7 @@ void               P3DStemModelInstance::GetBoundBox
                                       (float              *Min,
                                        float              *Max) const
  {
-  unsigned int     VertexCount;
+  unsigned_int32     VertexCount;
 
   VertexCount = GetVAttrCount(P3D_ATTR_VERTEX);
 
@@ -525,13 +525,13 @@ void               P3DStemModelInstance::GetBoundBox
 
     Max[0] = Min[0]; Max[1] = Min[1]; Max[2] = Min[2];
 
-    for (unsigned int VertexIndex = 1; VertexIndex < VertexCount; VertexIndex++)
+    for (unsigned_int32 VertexIndex = 1; VertexIndex < VertexCount; VertexIndex++)
      {
       float        Temp[3];
 
       GetVAttrValue(Temp,P3D_ATTR_VERTEX,VertexIndex);
 
-      for (unsigned int Axis = 0; Axis < 3; Axis++)
+      for (unsigned_int32 Axis = 0; Axis < 3; Axis++)
        {
         if      (Temp[Axis] < Min[Axis])
          {
@@ -570,7 +570,7 @@ void               P3DStemModelInstance::GetBoundBox
 
   free(Name);
 
-  for (unsigned int Index = 0; Index < SubBranchCount; Index++)
+  for (unsigned_int32 Index = 0; Index < SubBranchCount; Index++)
    {
     delete SubBranches[Index];
    }
@@ -694,14 +694,14 @@ P3DVisRangeState  *P3DBranchModel::GetVisRangeState
   return(&VisRangeState);
  }
 
-unsigned int       P3DBranchModel::GetSubBranchCount
+unsigned_int32       P3DBranchModel::GetSubBranchCount
                                       () const
  {
   return(SubBranchCount);
  }
 
 P3DBranchModel    *P3DBranchModel::GetSubBranchModel
-                                      (unsigned int        SubBranchIndex)
+                                      (unsigned_int32        SubBranchIndex)
  {
   if (SubBranchIndex < SubBranchCount)
    {
@@ -715,7 +715,7 @@ P3DBranchModel    *P3DBranchModel::GetSubBranchModel
 
 const
 P3DBranchModel    *P3DBranchModel::GetSubBranchModel
-                                      (unsigned int        SubBranchIndex) const
+                                      (unsigned_int32        SubBranchIndex) const
  {
   if (SubBranchIndex < SubBranchCount)
    {
@@ -744,7 +744,7 @@ void               P3DBranchModel::AppendSubBranch
 
 void               P3DBranchModel::InsertSubBranch
                                       (P3DBranchModel     *SubBranchModel,
-                                       unsigned int        SubBranchIndex)
+                                       unsigned_int32        SubBranchIndex)
  {
   if (SubBranchIndex >= SubBranchCount)
    {
@@ -754,7 +754,7 @@ void               P3DBranchModel::InsertSubBranch
    {
     if (SubBranchCount < P3DBranchModelSubBranchMaxCount)
      {
-      for (unsigned int Index = SubBranchCount; Index > SubBranchIndex; Index--)
+      for (unsigned_int32 Index = SubBranchCount; Index > SubBranchIndex; Index--)
        {
         SubBranches[Index] = SubBranches[Index - 1];
        }
@@ -771,13 +771,13 @@ void               P3DBranchModel::InsertSubBranch
  }
 
 void               P3DBranchModel::RemoveSubBranch
-                                      (unsigned int        SubBranchIndex)
+                                      (unsigned_int32        SubBranchIndex)
  {
   if (SubBranchIndex < SubBranchCount)
    {
     delete SubBranches[SubBranchIndex];
 
-    for (unsigned int Index = (SubBranchIndex + 1); Index < SubBranchCount; Index++)
+    for (unsigned_int32 Index = (SubBranchIndex + 1); Index < SubBranchCount; Index++)
      {
       SubBranches[Index - 1] = SubBranches[Index];
      }
@@ -791,7 +791,7 @@ void               P3DBranchModel::RemoveSubBranch
  }
 
 P3DBranchModel    *P3DBranchModel::DetachSubBranch
-                                      (unsigned int        SubBranchIndex)
+                                      (unsigned_int32        SubBranchIndex)
  {
   if (SubBranchIndex < SubBranchCount)
    {
@@ -799,7 +799,7 @@ P3DBranchModel    *P3DBranchModel::DetachSubBranch
 
     Result = SubBranches[SubBranchIndex];
 
-    for (unsigned int Index = (SubBranchIndex + 1); Index < SubBranchCount; Index++)
+    for (unsigned_int32 Index = (SubBranchIndex + 1); Index < SubBranchCount; Index++)
      {
       SubBranches[Index - 1] = SubBranches[Index];
      }
@@ -854,7 +854,7 @@ void               P3DBranchModel::Save
 
   FmtStream.WriteString("su","BranchModelCount",SubBranchCount);
 
-  for (unsigned int SubBranchIndex = 0; SubBranchIndex < SubBranchCount; SubBranchIndex++)
+  for (unsigned_int32 SubBranchIndex = 0; SubBranchIndex < SubBranchCount; SubBranchIndex++)
    {
     SubBranches[SubBranchIndex]->Save(TargetStream,MaterialSaver);
    }
@@ -1014,7 +1014,7 @@ void               P3DBranchModel::Load
 
   VisRangeState.Load(SourceStream,Version);
 
-  unsigned int TempSubBranchCount;
+  unsigned_int32 TempSubBranchCount;
 
   SourceStream->ReadFmtStringTagged("BranchModelCount","u",&TempSubBranchCount);
 
@@ -1025,7 +1025,7 @@ void               P3DBranchModel::Load
 
   SubBranchCount = 0;
 
-  for (unsigned int SubBranchIndex = 0; SubBranchIndex < TempSubBranchCount; SubBranchIndex++)
+  for (unsigned_int32 SubBranchIndex = 0; SubBranchIndex < TempSubBranchCount; SubBranchIndex++)
    {
     SubBranches[SubBranchIndex] = new P3DBranchModel();
 
@@ -1062,26 +1062,26 @@ P3DBranchModel    *P3DPlantModel::GetPlantBase
   return(PlantBase);
  }
 
-unsigned int       P3DPlantModel::GetBaseSeed
+unsigned_int32       P3DPlantModel::GetBaseSeed
                                       () const
  {
   return(BaseSeed);
  }
 
 void               P3DPlantModel::SetBaseSeed
-                                      (unsigned int        BaseSeed)
+                                      (unsigned_int32        BaseSeed)
  {
   this->BaseSeed = BaseSeed;
  }
 
-unsigned int       P3DPlantModel::GetFlags
+unsigned_int32       P3DPlantModel::GetFlags
                                       () const
  {
   return Flags;
  }
 
 void               P3DPlantModel::SetFlags
-                                      (unsigned int        Flags)
+                                      (unsigned_int32        Flags)
  {
   this->Flags = Flags;
  }
@@ -1095,7 +1095,7 @@ void               P3DPlantModel::Save(P3DOutputStringStream
  {
   P3DOutputStringFmtStream             FmtStream(TargetStream);
 
-  FmtStream.WriteString("suu","P3D",(unsigned int)P3D_VERSION_MAJOR,(unsigned int)P3D_VERSION_MINOR);
+  FmtStream.WriteString("suu","P3D",(unsigned_int32)P3D_VERSION_MAJOR,(unsigned_int32)P3D_VERSION_MINOR);
   FmtStream.WriteString("su","BaseSeed",BaseSeed);
 
   PlantBase->Save(TargetStream,MaterialSaver);
@@ -1104,7 +1104,7 @@ void               P3DPlantModel::Save(P3DOutputStringStream
 static void        AutoGenerateBGroupNames
                                       (P3DPlantModel      *PlantModel)
  {
-  unsigned int                         BranchGroupIndex;
+  unsigned_int32                         BranchGroupIndex;
   P3DBranchModel                      *BranchModel;
   char                                 NameBuffer[128];
 
@@ -1185,7 +1185,7 @@ void               P3DPlantModel::BranchModelSetUniqueName
                                        P3DBranchModel     *BranchModel)
  {
   bool                                 Done;
-  unsigned int                         Index;
+  unsigned_int32                         Index;
   char                                 NameBuffer[128];
 
   Done  = false;
@@ -1217,10 +1217,10 @@ static P3DBranchModel
                   *GetBranchModelByIndex
                                       (const P3DBranchModel
                                                           *Model,
-                                       unsigned int       *Index)
+                                       unsigned_int32       *Index)
  {
-  unsigned int                         SubBranchIndex;
-  unsigned int                         SubBranchCount;
+  unsigned_int32                         SubBranchIndex;
+  unsigned_int32                         SubBranchCount;
   const P3DBranchModel                *Result;
 
   (*Index)--;
@@ -1250,8 +1250,8 @@ static P3DBranchModel
                                       (P3DBranchModel     *Model,
                                        const char         *BranchName)
  {
-  unsigned int                         SubBranchIndex;
-  unsigned int                         SubBranchCount;
+  unsigned_int32                         SubBranchIndex;
+  unsigned_int32                         SubBranchCount;
   P3DBranchModel                      *Result;
 
   if (strcmp(Model->GetName(),BranchName) == 0)
@@ -1276,9 +1276,9 @@ static P3DBranchModel
 
 P3DBranchModel    *P3DPlantModel::GetBranchModelByIndex
                                       (P3DPlantModel      *Model,
-                                       unsigned int        Index)
+                                       unsigned_int32        Index)
  {
-  unsigned int                         CurrIndex;
+  unsigned_int32                         CurrIndex;
 
   CurrIndex = Index + 2; /* skip plant base group */
 
@@ -1288,9 +1288,9 @@ P3DBranchModel    *P3DPlantModel::GetBranchModelByIndex
 const P3DBranchModel
                   *P3DPlantModel::GetBranchModelByIndex
                                       (const P3DPlantModel*Model,
-                                       unsigned int        Index)
+                                       unsigned_int32        Index)
  {
-  unsigned int                         CurrIndex;
+  unsigned_int32                         CurrIndex;
 
   CurrIndex = Index + 2; /* skip plant base group */
 

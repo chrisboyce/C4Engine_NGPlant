@@ -38,7 +38,7 @@ class P3DMathRNG
 
   virtual         ~P3DMathRNG         () {};
 
-  virtual void     SetSeed            (unsigned int        Seed) = 0;
+  virtual void     SetSeed            (unsigned_int32        Seed) = 0;
 
   virtual
   int              RandomInt          (int                 Min,
@@ -53,9 +53,9 @@ class P3DMathRNGSimple : public P3DMathRNG
  {
   public           :
 
-                   P3DMathRNGSimple   (unsigned int        Seed);
+                   P3DMathRNGSimple   (unsigned_int32        Seed);
 
-  virtual void     SetSeed            (unsigned int        Seed);
+  virtual void     SetSeed            (unsigned_int32        Seed);
 
   virtual int      RandomInt          (int                 Min,
                                        int                 Max);
@@ -65,9 +65,9 @@ class P3DMathRNGSimple : public P3DMathRNG
 
   private          :
 
-  unsigned int     Rand               ();
+  unsigned_int32     Rand               ();
 
-  unsigned int     Seed;
+  unsigned_int32     Seed;
  };
 
 #endif

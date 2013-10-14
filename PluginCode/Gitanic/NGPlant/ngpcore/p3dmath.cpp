@@ -29,11 +29,6 @@
 
 ***************************************************************************/
 
-#include <math.h>
-/*
-#include <stdio.h>
-*/
-#include <stdafx.h>
 #include <ngpcore/p3dmath.h>
 
 void                P3DMath::SinCosf  (float              *sina,
@@ -119,7 +114,7 @@ void               P3DVector3f::MultMatrixTranspose
                    P3DMatrix4x4f::P3DMatrix4x4f
                                       (bool                identity)
  {
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     m[i] = 0.0f;
    }
@@ -136,7 +131,7 @@ void               P3DMatrix4x4f::MakeTranslation
                                        float               y,
                                        float               z)
  {
-  for (unsigned int i = 0; i < 12; i++)
+  for (unsigned_int32 i = 0; i < 12; i++)
    {
     m[i] = 0.0f;
    }
@@ -202,7 +197,7 @@ void               P3DMatrix4x4f::Translate
 void               P3DMatrix4x4f::MakeIdentity
                                       (float              *m)
  {
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     m[i] = 0.0f;
    }

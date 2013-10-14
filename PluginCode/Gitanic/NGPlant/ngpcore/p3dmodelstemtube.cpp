@@ -51,14 +51,14 @@ enum /* These constants are needed for pre-0.9.3 compatibility only */
 
                    P3DStemModelTubeInstance::P3DStemModelTubeInstance
                                       (float               Length,
-                                       unsigned int        AxisResolution,
+                                       unsigned_int32        AxisResolution,
                                        float               ProfileScaleBase,
                                        const P3DMathNaturalCubicSpline
                                                           *ScaleProfileCurve,
-                                       unsigned int        ProfileResolution,
-                                       unsigned int        UMode,
+                                       unsigned_int32        ProfileResolution,
+                                       unsigned_int32        UMode,
                                        float               UScale,
-                                       unsigned int        VMode,
+                                       unsigned_int32        VMode,
                                        float               VScale,
                                        const P3DMatrix4x4f*Transform)
                    : Axis(Length,AxisResolution),
@@ -80,8 +80,8 @@ enum /* These constants are needed for pre-0.9.3 compatibility only */
   this->VScale = VScale;
  }
 
-unsigned int       P3DStemModelTubeInstance::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelTubeInstance::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if (Attr == P3D_ATTR_TEXCOORD0)
    {
@@ -95,8 +95,8 @@ unsigned int       P3DStemModelTubeInstance::GetVAttrCount
 
 void               P3DStemModelTubeInstance::GetVAttrValue
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if      (Attr == P3D_ATTR_VERTEX)
    {
@@ -126,9 +126,9 @@ void               P3DStemModelTubeInstance::GetVAttrValue
 
 void               P3DStemModelTubeInstance::CalcVertexPos
                                       (float              *Pos,
-                                       unsigned int        VertexIndex) const
+                                       unsigned_int32        VertexIndex) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   float                                HeightFraction;
   float                                PScale;
   P3DQuaternionf                       SegOrient;
@@ -167,9 +167,9 @@ void               P3DStemModelTubeInstance::CalcVertexPos
 
 void               P3DStemModelTubeInstance::CalcVertexNormal
                                       (float              *Normal,
-                                       unsigned int        VertexIndex) const
+                                       unsigned_int32        VertexIndex) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   float                                HeightFraction;
   P3DQuaternionf                       SegOrient;
   P3DVector3f                          VertexNormal;
@@ -207,9 +207,9 @@ void               P3DStemModelTubeInstance::CalcVertexNormal
 
 void               P3DStemModelTubeInstance::CalcVertexBiNormal
                                       (float              *BiNormal,
-                                       unsigned int        VertexIndex) const
+                                       unsigned_int32        VertexIndex) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   float                                HeightFraction;
   P3DQuaternionf                       SegOrient;
   P3DVector3f                          VertexBiNormal(0.0f,1.0f,0.0f);
@@ -243,7 +243,7 @@ void               P3DStemModelTubeInstance::CalcVertexBiNormal
 /*FIXME: not very optimal implementation */
 void               P3DStemModelTubeInstance::CalcVertexTangent
                                       (float              *Tangent,
-                                       unsigned int        VertexIndex) const
+                                       unsigned_int32        VertexIndex) const
  {
   float                                Normal[3];
   float                                BiNormal[3];
@@ -256,9 +256,9 @@ void               P3DStemModelTubeInstance::CalcVertexTangent
 
 void               P3DStemModelTubeInstance::CalcVertexTexCoord
                                       (float              *TexCoord,
-                                       unsigned int        VertexIndex) const
+                                       unsigned_int32        VertexIndex) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   float                                HeightFraction;
 
   SegIndex = VertexIndex / (Profile.GetResolution() + 1);
@@ -286,7 +286,7 @@ void               P3DStemModelTubeInstance::CalcVertexTexCoord
   TexCoord[0] = ((float)(VertexIndex % (Profile.GetResolution() + 1))) / (Profile.GetResolution()) * UScale;
  }
 
-unsigned int       P3DStemModelTubeInstance::GetVAttrCountI
+unsigned_int32       P3DStemModelTubeInstance::GetVAttrCountI
                                       () const
  {
   return((Profile.GetResolution() + 1) * (Axis.GetResolution() + 1));
@@ -294,8 +294,8 @@ unsigned int       P3DStemModelTubeInstance::GetVAttrCountI
 
 void               P3DStemModelTubeInstance::GetVAttrValueI
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if (Index >= GetVAttrCountI())
    {
@@ -308,8 +308,8 @@ void               P3DStemModelTubeInstance::GetVAttrValueI
    }
   else
    {
-    unsigned int   AttrIndex;
-    unsigned int   ProfileResolution;
+    unsigned_int32   AttrIndex;
+    unsigned_int32   ProfileResolution;
 
     ProfileResolution = Profile.GetResolution();
 
@@ -335,14 +335,14 @@ void               P3DStemModelTubeInstance::GetVAttrValueI
    }
  }
 
-unsigned int       P3DStemModelTubeInstance::GetPrimitiveCount
+unsigned_int32       P3DStemModelTubeInstance::GetPrimitiveCount
                                       () const
  {
   return(Profile.GetResolution() * Axis.GetResolution());
  }
 
-unsigned int       P3DStemModelTubeInstance::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelTubeInstance::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
@@ -379,7 +379,7 @@ float              P3DStemModelTubeInstance::GetScale
 void               P3DStemModelTubeInstance::GetWorldTransform
                                        (float              *Transform) const
  {
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     Transform[i] = WorldTransform.m[i];
    }
@@ -400,7 +400,7 @@ void               P3DStemModelTubeInstance::GetAxisOrientationAt
  }
 
 void               P3DStemModelTubeInstance::SetSegOrientation
-                                      (unsigned int        SegIndex,
+                                      (unsigned_int32        SegIndex,
                                        float              *Orientation)
  {
   Axis.SetSegOrientation(SegIndex,Orientation);
@@ -553,7 +553,7 @@ void               P3DStemModelTube::ApplyPhototropism
                                       (P3DStemModelTubeInstance
                                                           *Instance) const
  {
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
   P3DVector3f                          YVector;
   P3DQuaternionf                       SegOrientation;
   P3DMatrix4x4f                        WorldTransform;
@@ -612,7 +612,7 @@ void               P3DStemModelTube::ApplyAxisVariation
   float                                SinAngle1;
   float                                CosAngle1;
   P3DQuaternionf                       Q;
-  unsigned int                         SegIndex;
+  unsigned_int32                         SegIndex;
 
   if (RNG == 0)
    {
@@ -761,8 +761,8 @@ bool               P3DStemModelTube::IsCloneable
   return(false);
  }
 
-unsigned int       P3DStemModelTube::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelTube::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if (Attr == P3D_ATTR_TEXCOORD0)
    {
@@ -776,37 +776,37 @@ unsigned int       P3DStemModelTube::GetVAttrCount
 
 void               P3DStemModelTube::FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        Attr) const
  {
   //NOTE: tube cannot be cloned, so call is ignored
  }
 
-unsigned int       P3DStemModelTube::GetPrimitiveCount
+unsigned_int32       P3DStemModelTube::GetPrimitiveCount
                                       () const
  {
   return(ProfileResolution * AxisResolution);
  }
 
-unsigned int       P3DStemModelTube::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelTube::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
 
 void               P3DStemModelTube::FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
-  unsigned int                         PrimitiveIndex;
-  unsigned int                         PrimitiveCount;
+  unsigned_int32                         PrimitiveIndex;
+  unsigned_int32                         PrimitiveCount;
   unsigned short                      *ShortBuffer;
-  unsigned int                        *IntBuffer;
+  unsigned_int32                        *IntBuffer;
 
   PrimitiveCount = GetPrimitiveCount();
   ShortBuffer    = (unsigned short*)IndexBuffer;
-  IntBuffer      = (unsigned int*)IndexBuffer;
+  IntBuffer      = (unsigned_int32*)IndexBuffer;
 
   if      ((Attr == P3D_ATTR_VERTEX)   ||
            (Attr == P3D_ATTR_NORMAL)   ||
@@ -851,7 +851,7 @@ void               P3DStemModelTube::FillVAttrIndexBuffer
    }
   else if (Attr == P3D_ATTR_TEXCOORD0)
    {
-    unsigned int   Level;
+    unsigned_int32   Level;
 
     for (PrimitiveIndex = 0; PrimitiveIndex < PrimitiveCount; PrimitiveIndex++)
      {
@@ -887,7 +887,7 @@ void               P3DStemModelTube::FillVAttrIndexBuffer
    }
  }
 
-unsigned int       P3DStemModelTube::GetVAttrCountI
+unsigned_int32       P3DStemModelTube::GetVAttrCountI
                                       () const
  {
   return((ProfileResolution + 1) * (AxisResolution + 1));
@@ -895,14 +895,14 @@ unsigned int       P3DStemModelTube::GetVAttrCountI
 
 void               P3DStemModelTube::FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const
  {
   //NOTE: tube cannot be cloned, so call is ignored
  }
 
-unsigned int       P3DStemModelTube::GetIndexCount
-                                      (unsigned int        PrimitiveType) const
+unsigned_int32       P3DStemModelTube::GetIndexCount
+                                      (unsigned_int32        PrimitiveType) const
  {
   if (PrimitiveType == P3D_TRIANGLE_LIST)
    {
@@ -916,20 +916,20 @@ unsigned int       P3DStemModelTube::GetIndexCount
 
 void               P3DStemModelTube::FillIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   if (PrimitiveType == P3D_TRIANGLE_LIST)
    {
-    unsigned int                       AxisSegment;
-    unsigned int                       ProfileSegment;
+    unsigned_int32                       AxisSegment;
+    unsigned_int32                       ProfileSegment;
     unsigned short                    *ShortBuffer;
-    unsigned int                      *IntBuffer;
-    unsigned int                       Index;
+    unsigned_int32                      *IntBuffer;
+    unsigned_int32                       Index;
 
     ShortBuffer = (unsigned short*)IndexBuffer;
-    IntBuffer   = (unsigned int*)IndexBuffer;
+    IntBuffer   = (unsigned_int32*)IndexBuffer;
     Index       = 0;
 
     for (AxisSegment = 0; AxisSegment < AxisResolution; AxisSegment++)
@@ -970,8 +970,8 @@ void               P3DSaveSplineCurve (P3DOutputStringFmtStream
                                        const P3DMathNaturalCubicSpline
                                                           *Spline)
  {
-  unsigned int                         CPCount;
-  unsigned int                         CPIndex;
+  unsigned_int32                         CPCount;
+  unsigned_int32                         CPIndex;
 
   CPCount = Spline->GetCPCount();
 
@@ -989,8 +989,8 @@ void               P3DLoadSplineCurve (P3DMathNaturalCubicSpline
                                                           *SourceStream,
                                        const char         *CurveName)
  {
-  unsigned int                         CPCount;
-  unsigned int                         CPIndex;
+  unsigned_int32                         CPCount;
+  unsigned_int32                         CPIndex;
   float                                X,Y;
 
   if (strcmp(CurveName,"CubicSpline") != 0)
@@ -1053,8 +1053,8 @@ void               P3DStemModelTube::Load
  {
   char                                 StrValue[255 + 1];
   float                                FloatValue;
-  unsigned int                         UintValue;
-  unsigned int                         PhototropismMode;
+  unsigned_int32                         UintValue;
+  unsigned_int32                         PhototropismMode;
 
   PhototropismMode = P3DPhototropismModePositive;
 
@@ -1097,7 +1097,7 @@ void               P3DStemModelTube::Load
 
   if ((Version->Major == 0) && (Version->Minor < 3))
    {
-    for (unsigned int Index = 0; Index < PhototropismCurve.GetCPCount(); Index++)
+    for (unsigned_int32 Index = 0; Index < PhototropismCurve.GetCPCount(); Index++)
      {
       if (PhototropismMode == P3DPhototropismModePositive)
        {
@@ -1191,7 +1191,7 @@ float              P3DStemModelTube::GetAxisVariation
  }
 
 void               P3DStemModelTube::SetAxisResolution
-                                      (unsigned int        Resolution)
+                                      (unsigned_int32        Resolution)
  {
   if (Resolution > 0)
    {
@@ -1203,14 +1203,14 @@ void               P3DStemModelTube::SetAxisResolution
    }
  }
 
-unsigned int       P3DStemModelTube::GetAxisResolution
+unsigned_int32       P3DStemModelTube::GetAxisResolution
                                       () const
  {
   return(AxisResolution);
  }
 
 void               P3DStemModelTube::SetProfileResolution
-                                      (unsigned int        Resolution)
+                                      (unsigned_int32        Resolution)
  {
   if (Resolution > 2)
    {
@@ -1222,7 +1222,7 @@ void               P3DStemModelTube::SetProfileResolution
    }
  }
 
-unsigned int       P3DStemModelTube::GetProfileResolution
+unsigned_int32       P3DStemModelTube::GetProfileResolution
                                       () const
  {
   return(ProfileResolution);
@@ -1283,7 +1283,7 @@ const P3DMathNaturalCubicSpline
  }
 
 void               P3DStemModelTube::SetTexCoordUMode
-                                      (unsigned int        Mode)
+                                      (unsigned_int32        Mode)
  {
   if (Mode == P3DTexCoordModeAbsolute)
    {
@@ -1295,7 +1295,7 @@ void               P3DStemModelTube::SetTexCoordUMode
    }
  }
 
-unsigned int       P3DStemModelTube::GetTexCoordUMode
+unsigned_int32       P3DStemModelTube::GetTexCoordUMode
                                       () const
  {
   return(UMode);
@@ -1314,7 +1314,7 @@ float              P3DStemModelTube::GetTexCoordUScale
  }
 
 void               P3DStemModelTube::SetTexCoordVMode
-                                      (unsigned int        Mode)
+                                      (unsigned_int32        Mode)
  {
   if (Mode == P3DTexCoordModeAbsolute)
    {
@@ -1326,7 +1326,7 @@ void               P3DStemModelTube::SetTexCoordVMode
    }
  }
 
-unsigned int       P3DStemModelTube::GetTexCoordVMode
+unsigned_int32       P3DStemModelTube::GetTexCoordVMode
                                       () const
  {
   return(VMode);

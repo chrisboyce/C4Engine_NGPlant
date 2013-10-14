@@ -41,30 +41,30 @@ class P3DStemModelQuadInstance : public P3DStemModelInstance
                                       (float               Scale,
                                        float               Length,
                                        float               Width,
-                                       unsigned int        BillboardMode,
-                                       unsigned int        SectionCount,
+                                       unsigned_int32        BillboardMode,
+                                       unsigned_int32        SectionCount,
                                        const P3DMathNaturalCubicSpline
                                                           *Curvature,
                                        float               Thickness,
                                        const P3DMatrix4x4f*Transform);
 
   virtual
-  unsigned int     GetVAttrCount      (unsigned int        Attr) const;
+  unsigned_int32     GetVAttrCount      (unsigned_int32        Attr) const;
   virtual void     GetVAttrValue      (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual
-  unsigned int     GetPrimitiveCount  () const;
+  unsigned_int32     GetPrimitiveCount  () const;
   virtual
-  unsigned int     GetPrimitiveType   (unsigned int        PrimitiveIndex) const;
+  unsigned_int32     GetPrimitiveType   (unsigned_int32        PrimitiveIndex) const;
 
   virtual
-  unsigned int     GetVAttrCountI     () const;
+  unsigned_int32     GetVAttrCountI     () const;
 
   virtual void     GetVAttrValueI     (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const;
 
   virtual void     GetBoundBox        (float              *Min,
                                        float              *Max) const;
@@ -88,20 +88,20 @@ class P3DStemModelQuadInstance : public P3DStemModelInstance
   private          :
 
   void             CalcVertexNormalAt (float              *Normal,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Index) const;
   void             CalcVertexBiNormalAt
                                       (float              *BiNormal,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Index) const;
   void             CalcVertexTangentAt(float              *Tangent,
-                                       unsigned int        Index) const;
+                                       unsigned_int32        Index) const;
 
   float                                Scale;
   float                                Length;
   float                                Width;
-  unsigned int                         BillboardMode;
+  unsigned_int32                         BillboardMode;
   P3DMatrix4x4f                        WorldTransform;
 
-  unsigned int                         SectionCount;
+  unsigned_int32                         SectionCount;
   const P3DMathNaturalCubicSpline     *Curvature;
   float                                Thickness;
  };
@@ -110,8 +110,8 @@ class P3DStemModelQuadInstance : public P3DStemModelInstance
                                       (float               Scale,
                                        float               Length,
                                        float               Width,
-                                       unsigned int        BillboardMode,
-                                       unsigned int        SectionCount,
+                                       unsigned_int32        BillboardMode,
+                                       unsigned_int32        SectionCount,
                                        const P3DMathNaturalCubicSpline
                                                           *Curvature,
                                        float               Thickness,
@@ -141,8 +141,8 @@ class P3DStemModelQuadInstance : public P3DStemModelInstance
    }
  }
 
-unsigned int       P3DStemModelQuadInstance::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelQuadInstance::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if (SectionCount == 1)
    {
@@ -174,7 +174,7 @@ unsigned int       P3DStemModelQuadInstance::GetVAttrCount
 
 void               P3DStemModelQuadInstance::CalcVertexNormalAt
                                       (float              *Normal,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Index) const
  {
   P3DVector3f                        VertexNormal(0.0f,0.0f,1.0f);
   P3DMatrix4x4f                      Rotation;
@@ -205,7 +205,7 @@ void               P3DStemModelQuadInstance::CalcVertexNormalAt
 
 void               P3DStemModelQuadInstance::CalcVertexBiNormalAt
                                       (float              *BiNormal,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Index) const
  {
   P3DVector3f                        VertexBiNormal(0.0f,1.0f,0.0f);
   P3DMatrix4x4f                      Rotation;
@@ -237,7 +237,7 @@ void               P3DStemModelQuadInstance::CalcVertexBiNormalAt
 /*FIXME: not very optimal implementation */
 void               P3DStemModelQuadInstance::CalcVertexTangentAt
                                       (float              *Tangent,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Index) const
  {
   float                                Normal[3];
   float                                BiNormal[3];
@@ -250,8 +250,8 @@ void               P3DStemModelQuadInstance::CalcVertexTangentAt
 
 void               P3DStemModelQuadInstance::GetVAttrValue
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if      (Attr == P3D_ATTR_VERTEX)
    {
@@ -313,19 +313,19 @@ void               P3DStemModelQuadInstance::GetVAttrValue
    }
  }
 
-unsigned int       P3DStemModelQuadInstance::GetPrimitiveCount
+unsigned_int32       P3DStemModelQuadInstance::GetPrimitiveCount
                                       () const
  {
   return(SectionCount);
  }
 
-unsigned int       P3DStemModelQuadInstance::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelQuadInstance::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
 
-unsigned int       P3DStemModelQuadInstance::GetVAttrCountI
+unsigned_int32       P3DStemModelQuadInstance::GetVAttrCountI
                                       () const
  {
   return(2 + SectionCount * 2);
@@ -333,8 +333,8 @@ unsigned int       P3DStemModelQuadInstance::GetVAttrCountI
 
 void               P3DStemModelQuadInstance::GetVAttrValueI
                                       (float              *Value,
-                                       unsigned int        Attr,
-                                       unsigned int        Index) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Index) const
  {
   if (Attr == P3D_ATTR_BILLBOARD_POS)
    {
@@ -426,7 +426,7 @@ void               P3DStemModelQuadInstance::GetWorldTransform
                                       (float              *Transform) const
  {
   /*FIXME: need standard way to copy matrix into float array */
-  for (unsigned int i = 0; i < 16; i++)
+  for (unsigned_int32 i = 0; i < 16; i++)
    {
     Transform[i] = WorldTransform.m[i];
    }
@@ -604,8 +604,8 @@ bool               P3DStemModelQuad::IsCloneable
   return(AllowScaling || ScalingCurve.IsConstant());
  }
 
-unsigned int       P3DStemModelQuad::GetVAttrCount
-                                      (unsigned int        Attr) const
+unsigned_int32       P3DStemModelQuad::GetVAttrCount
+                                      (unsigned_int32        Attr) const
  {
   if (SectionCount == 1)
    {
@@ -637,10 +637,10 @@ unsigned int       P3DStemModelQuad::GetVAttrCount
 
 void               P3DStemModelQuad::FillCloneVAttrBuffer
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr) const
+                                       unsigned_int32        Attr) const
  {
-  unsigned int Count         = GetVAttrCount(Attr);
-  unsigned int AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
+  unsigned_int32 Count         = GetVAttrCount(Attr);
+  unsigned_int32 AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
 
   float Scale = ScalingCurve.GetValue(0.0f);
 
@@ -654,7 +654,7 @@ void               P3DStemModelQuad::FillCloneVAttrBuffer
                                               Thickness,
                                               0);
 
-  for (unsigned int Index = 0; Index < Count; Index++)
+  for (unsigned_int32 Index = 0; Index < Count; Index++)
    {
     Instance->GetVAttrValue(&(((float*)VAttrBuffer)[Index * AttrItemCount]),Attr,Index);
    }
@@ -662,29 +662,29 @@ void               P3DStemModelQuad::FillCloneVAttrBuffer
   delete Instance;
  }
 
-unsigned int       P3DStemModelQuad::GetPrimitiveCount
+unsigned_int32       P3DStemModelQuad::GetPrimitiveCount
                                       () const
  {
   return(SectionCount);
  }
 
-unsigned int       P3DStemModelQuad::GetPrimitiveType
-                                      (unsigned int        PrimitiveIndex P3D_UNUSED_ATTR) const
+unsigned_int32       P3DStemModelQuad::GetPrimitiveType
+                                      (unsigned_int32        PrimitiveIndex P3D_UNUSED_ATTR) const
  {
   return(P3D_QUAD);
  }
 
 void               P3DStemModelQuad::FillVAttrIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   unsigned short                      *ShortBuffer;
-  unsigned int                        *IntBuffer;
+  unsigned_int32                        *IntBuffer;
 
   ShortBuffer = (unsigned short*)IndexBuffer;
-  IntBuffer   = (unsigned int*)IndexBuffer;
+  IntBuffer   = (unsigned_int32*)IndexBuffer;
 
   if (SectionCount == 1)
    {
@@ -727,7 +727,7 @@ void               P3DStemModelQuad::FillVAttrIndexBuffer
    }
   else
    {
-    for (unsigned int SectionIndex = 0; SectionIndex < SectionCount; SectionIndex++)
+    for (unsigned_int32 SectionIndex = 0; SectionIndex < SectionCount; SectionIndex++)
      {
       if ((Attr == P3D_ATTR_NORMAL)  ||
           (Attr == P3D_ATTR_TANGENT) ||
@@ -777,7 +777,7 @@ void               P3DStemModelQuad::FillVAttrIndexBuffer
    }
  }
 
-unsigned int       P3DStemModelQuad::GetVAttrCountI
+unsigned_int32       P3DStemModelQuad::GetVAttrCountI
                                       () const
  {
   return(2 + SectionCount * 2);
@@ -785,11 +785,11 @@ unsigned int       P3DStemModelQuad::GetVAttrCountI
 
 void               P3DStemModelQuad::FillCloneVAttrBufferI
                                       (void               *VAttrBuffer,
-                                       unsigned int        Attr,
-                                       unsigned int        Stride) const
+                                       unsigned_int32        Attr,
+                                       unsigned_int32        Stride) const
  {
-  unsigned int Count         = GetVAttrCountI();
-  unsigned int AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
+  unsigned_int32 Count         = GetVAttrCountI();
+  unsigned_int32 AttrItemCount = Attr == P3D_ATTR_TEXCOORD0 ? 2 : 3;
 
   float Scale = ScalingCurve.GetValue(0.0f);
 
@@ -808,7 +808,7 @@ void               P3DStemModelQuad::FillCloneVAttrBufferI
     Stride = AttrItemCount * sizeof(float);
    }
 
-  for (unsigned int Index = 0; Index < Count; Index++)
+  for (unsigned_int32 Index = 0; Index < Count; Index++)
    {
     Instance->GetVAttrValueI((float*)&(((char*)VAttrBuffer)[Index * Stride]),Attr,Index);
    }
@@ -816,8 +816,8 @@ void               P3DStemModelQuad::FillCloneVAttrBufferI
   delete Instance;
  }
 
-unsigned int       P3DStemModelQuad::GetIndexCount
-                                      (unsigned int        PrimitiveType) const
+unsigned_int32       P3DStemModelQuad::GetIndexCount
+                                      (unsigned_int32        PrimitiveType) const
  {
   if (PrimitiveType == P3D_TRIANGLE_LIST)
    {
@@ -831,20 +831,20 @@ unsigned int       P3DStemModelQuad::GetIndexCount
 
 void               P3DStemModelQuad::FillIndexBuffer
                                       (void               *IndexBuffer,
-                                       unsigned int        PrimitiveType,
-                                       unsigned int        ElementType,
-                                       unsigned int        IndexBase) const
+                                       unsigned_int32        PrimitiveType,
+                                       unsigned_int32        ElementType,
+                                       unsigned_int32        IndexBase) const
  {
   if (PrimitiveType == P3D_TRIANGLE_LIST)
    {
     unsigned short                    *ShortBuffer;
-    unsigned int                      *IntBuffer;
-    unsigned int                       SectionIndex;
-    unsigned int                       Index;
+    unsigned_int32                      *IntBuffer;
+    unsigned_int32                       SectionIndex;
+    unsigned_int32                       Index;
 
     Index       = 0;
     ShortBuffer = (unsigned short*)IndexBuffer;
-    IntBuffer   = (unsigned int*)IndexBuffer;
+    IntBuffer   = (unsigned_int32*)IndexBuffer;
 
     for (SectionIndex = 0; SectionIndex < SectionCount; SectionIndex++)
      {
@@ -900,14 +900,14 @@ float              P3DStemModelQuad::GetWidth
   return(Width);
  }
 
-unsigned int       P3DStemModelQuad::GetBillboardMode
+unsigned_int32       P3DStemModelQuad::GetBillboardMode
                                       () const
  {
   return(BillboardMode);
  }
 
 void               P3DStemModelQuad::SetBillboardMode
-                                      (unsigned int        Mode)
+                                      (unsigned_int32        Mode)
  {
   BillboardMode = Mode;
  }
@@ -933,7 +933,7 @@ const P3DMathNaturalCubicSpline
  }
 
 void               P3DStemModelQuad::SetSectionCount
-                                      (unsigned int        SectionCount)
+                                      (unsigned_int32        SectionCount)
  {
   if (SectionCount > 0)
    {
@@ -945,7 +945,7 @@ void               P3DStemModelQuad::SetSectionCount
    }
  }
 
-unsigned int       P3DStemModelQuad::GetSectionCount
+unsigned_int32       P3DStemModelQuad::GetSectionCount
                                       () const
  {
   return(SectionCount);
@@ -1010,7 +1010,7 @@ void               P3DStemModelQuad::Load
  {
   char                                 StrValue[255 + 1];
   float                                FloatValue;
-  unsigned int                         UintValue;
+  unsigned_int32                         UintValue;
 
   SourceStream->ReadFmtStringTagged("Length","f",&FloatValue);
   SetLength(FloatValue);
